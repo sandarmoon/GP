@@ -18,6 +18,7 @@ class CreateCostsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('amount');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

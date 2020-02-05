@@ -13,7 +13,7 @@ class CreateMedicineTreatmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('medicine__treatments', function (Blueprint $table) {
+        Schema::create('medicine_treatments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('treatment_id');
             $table->unsignedBigInteger('medicine_id');
@@ -22,6 +22,7 @@ class CreateMedicineTreatmentsTable extends Migration
             $table->string('meal');
             $table->string('during');
             $table->string('type');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

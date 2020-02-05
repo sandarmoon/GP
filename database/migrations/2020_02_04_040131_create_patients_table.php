@@ -29,6 +29,7 @@ class CreatePatientsTable extends Migration
             $table->string('job');
             $table->text('file');
             $table->boolean('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

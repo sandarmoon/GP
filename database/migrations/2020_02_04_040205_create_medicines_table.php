@@ -18,6 +18,7 @@ class CreateMedicinesTable extends Migration
             $table->unsignedBigInteger('medicine_type_id');
             $table->string('name');
             $table->text('chemical');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

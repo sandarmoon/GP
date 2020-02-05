@@ -32,6 +32,7 @@ class CreateTreatmentsTable extends Migration
             $table->date('next_visit_date');
             $table->date('next_visit_date2');
             $table->string('charges');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
