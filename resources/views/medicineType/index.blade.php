@@ -1,0 +1,163 @@
+@extends('frontendTemplate')
+@section('add')
+  <div class="row mt-2">
+    <div class="col">
+      <div class="card bg-default shadow">
+        <div id="medCreate" class="card-header bg-transparent border-0">
+          <form action="{{route('medicineType.store')}}" id="med_store" method="post">
+            @csrf
+            <div class="row">
+
+                <input type="text" name="name" placeholder="enter medicine name" class="d-inline form-control col-md-6">
+                <button class="ml-3 btn d-inline-block btn-outline-secondary ">
+                  Add New
+                </button>
+            </div>
+          </form>
+
+          
+        </div>
+
+        <div id="medEdit" class="card-header bg-transparent border-0">
+          <form id="med_update" method="post">
+           @csrf
+           @method('PUT')
+            <div class="row">
+
+              
+                <input type="text" name="name" placeholder="enter medicine name" class="d-inline form-control col-md-6 ename">
+                <!-- <button type="submit" class="ml-3 btn d-inline-block btnUpdate btn-outline-secondary">
+                  Edit
+                </button> -->
+                <input type="submit" name="" value="Edit" class="ml-3 btn d-inline-block btnUpdate btn-outline-secondary" >
+                <button type="button" class="ml-3 btn d-inline-block btn-outline-secondary" id="Add">
+                  Add New
+                </button>
+            </div>
+          </form>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+@section('content')
+
+  <div class="card-header border-0">
+      <h3 class="mb-0">Medicine tables</h3>
+    </div>
+    <div class="table-responsive">
+       <table class="table align-items-center table-white table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th>No</th>
+                  <th>Name</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="medicineTable">
+                <?php $i=1;?>
+                @foreach($medTypes as $medType)
+                <tr>
+                    <td>{{$i++}}</td>
+                    <td>{{$medType->name}}</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btnEdit " data-id="{{$medType->id}}" data-name="{{$medType->name}}">Edit</button>
+                       <a class="btn btn-danger btn-sm " href="{{route('medicineType.edit',$medType->id)}}">Delete</a>
+                    </td>
+
+                </tr>
+                @endforeach
+                
+              </tbody>
+            </table>
+    </div>
+    <div class="card-footer py-4">
+      <nav aria-label="...">
+        <ul class="pagination justify-content-end mb-0">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">
+              <i class="fas fa-angle-left"></i>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">
+              <i class="fas fa-angle-right"></i>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  
+  
+	
+@endsection
+@section('script')
+<script type="text/javascript">
+  $('document').ready(function(){
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('#medEdit').hide();
+
+    $('.btnEdit').click(function(){
+      var id=$(this).data('id');
+      var name=$(this).data('name');
+      $('#medEdit').show(1500);
+      $('#medCreate').hide(1500);
+
+      $('.ename').val(name);
+      $('.eid').val(id);    
+      var url="{{route('medicineType.update',':id')}}";
+      url=url.replace(':id',id);
+
+      $('#med_update').attr('action',url);
+    })
+
+
+    $('#Add').click(function(){
+      $('#medEdit').hide(1500);
+      $('#medCreate').show(1500);
+    })
+
+    $('.btnUpdate').click(function(){
+      var name=$('.ename').val();
+      var id=$('.eid').val();
+      
+
+
+        // $.ajax({
+        //   url:url,
+        //   type:"PUT",
+        //   data:{name:name},
+        //   success:function(response){
+        //     console.log(response);
+        //   },
+        //   error:function(error){
+        //     console.log(error);
+        //   }
+          
+
+        // })
+     // console.log(name,id);
+    })
+
+
+  })
+</script>
+
+@endsection

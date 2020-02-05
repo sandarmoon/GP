@@ -16,3 +16,10 @@
 // });
 
 Route::get('/', 'FrontendController@index');
+
+// Treatment
+// Route::resource('/treatment','TreatmentController');
+
+//Medicine Type
+
+Route::resource('/medicineType','MedicineTypeController');
