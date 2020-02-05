@@ -16,3 +16,4 @@
 // });
 
 Route::get('/', 'FrontendController@index');
+Route::resource('patient','PatientController');
