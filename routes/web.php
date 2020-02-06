@@ -28,3 +28,7 @@ Route::get('/getMedicine','MedicineController@getMedicine')->name('getMedicine')
 
 Route::resource('patient','PatientController');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
