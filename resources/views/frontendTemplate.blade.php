@@ -27,12 +27,15 @@
   <link href="{{asset('template/assets/img/brand/favicon.png')}}" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
   <!-- Icons -->
   <link href="{{asset('template/assets/js/plugins/nucleo/css/nucleo.css')}}" rel="stylesheet" />
 
   <link href="{{asset('template/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="{{asset('template/assets/css/argon-dashboard.css?v=1.1.1')}}" rel="stylesheet" />
+  <link href="{{asset('template/table/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+
 </head>
 
 <body class="">
@@ -304,6 +307,13 @@
   <!--   Argon JS   -->
   <script src="{{asset('template/assets/js/argon-dashboard.min.js?v=1.1.1')}}"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+   <script src="{{asset('template/table/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('template/table/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{asset('template/table/js/demo/datatables-demo.js')}}"></script>
+  <script type="text/javascript" src=""></script>
+  <script src="{{asset('template/table/datatables/icon.js')}}"></script>
   <script>
     window.TrackJS &&
       TrackJS.install({
