@@ -23,6 +23,8 @@ Route::get('/', 'FrontendController@index');
 //Medicine Type
 
 Route::resource('/medicineType','MedicineTypeController');
+Route::resource('/medicine','MedicineController');
+Route::get('/getMedicine','MedicineController@getMedicine')->name('getMedicine');
 
 Route::resource('patient','PatientController');
 

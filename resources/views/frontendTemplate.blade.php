@@ -31,8 +31,12 @@
   <link href="{{asset('template/assets/js/plugins/nucleo/css/nucleo.css')}}" rel="stylesheet" />
 
   <link href="{{asset('template/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{asset('template/assets/css/dataTables.css')}}">
   <!-- CSS Files -->
   <link href="{{asset('template/assets/css/argon-dashboard.css?v=1.1.1')}}" rel="stylesheet" />
+
+  <link href="{{asset('template/assets/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
+
 </head>
 
 <body class="">
@@ -299,18 +303,29 @@
   </div>
   <!--   Core   -->
   <script src="{{asset('template/assets/js/plugins/jquery/dist/jquery.min.js')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="{{asset('template/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+
+  <script src="{{asset('template/assets/datatables/jquery.dataTables.js')}}"></script>
+  <script src="{{asset('template/assets/datatables/dataTables.bootstrap4.js')}}"></script>
   <!--   Optional JS   -->
   <!--   Argon JS   -->
   <script src="{{asset('template/assets/js/argon-dashboard.min.js?v=1.1.1')}}"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  
   <script>
+
+     window.$('table').DataTable();
     window.TrackJS &&
       TrackJS.install({
         token: "ee6fab19c5a04ac1a32a645abde4613a",
         application: "argon-dashboard-free"
       });
+
+     
+      
   </script>
+
   @yield('script')
 </body>
 

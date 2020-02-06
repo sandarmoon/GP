@@ -48,7 +48,7 @@ class PatientController extends Controller
             'weight'=>'required',
             'allergy'=>'required',
             'job'=>'required',
-            'file'=>
+            'file'=>'required'
         ]);
 
         if($request->hasfile('file'))
@@ -76,15 +76,9 @@ class PatientController extends Controller
      $patient->address=request('address');
      $patient->married_status=request('married');
      $patient->pregnant=request('pregnant');
-     $patient->body_weight=request('weight'
-'allergy'
-'job');
-     $patient->allergy=request('weight'
-'allergy'
-'job');
-     $patient->job=request('weight'
-'allergy'
-'job';
+     $patient->body_weight=request('weight');
+     $patient->allergy=request('allergy');
+     $patient->job=request('job');
      $patient->file=json_encode($path);
      $patient->status=0;
      $patient->save();

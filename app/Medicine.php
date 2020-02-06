@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Medicine extends Model
 {
 	use SoftDeletes;
-    protected $fillable = ['medicine_type_id','name','chemical'];
+    protected $fillable = ['medicinetype_id','name','chemical'];
+
+    public function medicinetype(){
+    	return $this->belongsTo('App\Medicinetype');
+    }
 }
