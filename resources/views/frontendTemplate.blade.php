@@ -37,9 +37,30 @@
 
   <link href="{{asset('template/assets/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
 
+  <link href="{{asset('template/assets/css/mine.css')}}" rel="stylesheet">
+  <style type="text/css">
+    @media (max-width: 720px){
+        .profilemedia{
+           text-align: center;
+            margin-left: 183px;
+            margin-right: 0px;
+            margin-top: 0px;
+            padding-top: 0px;
+        }
+
+       
+
+
+    }
+  </style>
+
 </head>
 
 <body class="">
+
+  <div id = "dialog-4" title = "Dialog Title goes here...">
+        
+      </div>
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->

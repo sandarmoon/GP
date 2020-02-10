@@ -1,0 +1,260 @@
+@extends('frontendTemplate')
+@section('content')
+	
+    <!-- Page content -->
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 mt-5">
+          <div class="card card-profile shadow">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+
+                <div class="card-profile-image " id="profileImg">
+                  <a href="#">
+                    <img src="{{asset($doctor->avatar)}}" class="rounded-circle">
+                  </a>
+                  <div class="Text "><a href="#" >Change Profile</a></div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+              <!-- <div class="d-flex justify-content-between">
+                <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
+                <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+              </div> -->
+            </div>
+            <div class="card-body pt-0 pt-md-4 mt">
+              <div class="row">
+                <div class="col">
+                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+            <form id="doctorResumeUpdate" enctype="multipart/formData">
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                      </div>
+                      <input class="form-control" name="name"  value="{{$doctor->user->name}}" type="text">
+                    </div>
+                  </div>
+                  <!-- <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
+                      <input class="form-control" name="email" value="{{$doctor->user->email}}"  type="email">
+                    </div>
+                  </div> -->
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-settings"></i>
+                           <img src="" width="30" height="30" class="d-none" id="profileholder">
+
+                        </span>
+
+                      </div>
+                      <input class="form-control" name="avatar"  type="file">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <!-- <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input class="form-control" name="password"  placeholder="Password" type="password">
+                    </div> -->
+                  </div>
+
+                   <div class="text-center">
+                      <input type="submit" class="btn btn-primary mt-4" value="Update information"/>
+                    </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Fill Resume</h3>
+                </div>
+                <div class="col-4 text-right">
+                  <!-- <a href="#!" class="btn btn-sm btn-primary">skip</a> -->
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              
+                <h6 class="heading-small text-muted mb-4">General information</h6>
+                <div class="pl-lg-4">
+
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-nrc">NRC</label>
+                        <input type="text" id="input-nrc" name="nrc" class="form-control form-control-alternative"  value="{{$doctor->nrc}}">
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-age">Age</label>
+                        <input type="text" id="input-age" name="age" value="{{$doctor->age}}" class="form-control form-control-alternative" >
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-dob">Date of Birth</label>
+                        <input type="text" id="input-dob" name="dob" value="{{$doctor->dob}}" class="form-control form-control-alternative" >
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                 <hr class="my-4" />
+                <!-- Eduction -->
+                <h6 class="heading-small text-muted mb-4">Skill information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-degree">Degree</label>
+                        <input id="input-degree" class="form-control form-control-alternative" name="degree" value="{{$doctor->degree}}" type="text">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-certificate">Certificate</label>
+
+                        <input type="hidden" name="oldcertificate" value="{{$doctor->certificate}}">
+                        <input type="hidden" name="oldlicense" value="{{$doctor->license}}">
+                        <input type="hidden" name="oldid" value="{{$doctor->id}}">
+                        <input type="hidden" name="oldavatar" value="{{$doctor->avatar}}">
+
+                        <input type="file" id="input-certificate" multiple="multiple" name="certificate[]" class="form-control form-control-alternative" >
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-license">License</label>
+                        <input type="file" id="input-license" name="license[]" class="form-control form-control-alternative" multiple="multiple">
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <hr class="my-4" />
+                <!-- Experience -->
+                <h6 class="heading-small text-muted mb-4">Working Experience</h6>
+                <div class="pl-lg-4">
+                  <div class="form-group">
+                    <label> Experience</label>
+                    <textarea rows="4" name="experience" class="form-control form-control-alternative" >{{$doctor->experience}}</textarea>
+                  </div>
+                </div>
+
+
+
+
+                <hr class="my-4" />
+                <!-- Address -->
+                <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                <div class="pl-lg-4">
+                  
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-address">Address</label>
+                        <input type="text" id="input-address" name="address" class="form-control form-control-alternative" placeholder="address" value="{{$doctor->address}}" >
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-phone">Phone</label>
+                        <input type="text" id="input-phone" name="phone" class="form-control form-control-alternative" placeholder="phone no" value="{{$doctor->phone}}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class=" text-right">
+                  <!-- <input type="submit" value="Submit Now!" class="btn btn-sm btn-primary AddNew"/>or -->
+                  <a href="#!" class="">Skip</a>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      
+    </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+	$('document').ready(function(){
+		 $.ajaxSetup({
+		        headers: {
+		            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		        }
+		    });
+
+
+    $('input[name="avatar"]').change(function(){
+      alert('hello');
+      var  reader=new FileReader();
+      reader.onload=(e)=>{
+
+        $('#profileholder').attr('src',e.target.result);
+        $('#profileholder').removeClass('d-none');
+        $('.ni-settings').hide();
+      }
+      reader.readAsDataURL(this.files[0]); 
+    })
+
+    $('#doctorResumeUpdate').submit(function(e){
+
+      e.preventDefault();
+    var formData= new FormData(this);
+    var id=$('input[name="oldid"]').val();
+    var name=$('input[name="name"]').val();
+   
+      // var form_data = $("#doctorResumeUpdate").serialize();
+    
+    formData.append('_method', 'PUT');
+      console.log(name);
+      var url="{{route('doctor.update',':id')}}";
+      
+      url=url.replace(':id',id);
+      $.ajax({
+                type:'post',
+                url: url,
+                data:formData,
+                cache:false,
+                dataType:'json',
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                  window.location.href="{{route('doctor.index')}}";
+                    //this.reset();
+                    //alert('Image has been uploaded successfully');
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            });
+    })
+	})
+</script>
+@endsection
