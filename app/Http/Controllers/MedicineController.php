@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
+use App\Medicine;
+use App\Medicinetype;
+use App\Http\Resources\MedicineResource;
 class MedicineController extends Controller
 {
     /**
@@ -13,7 +16,10 @@ class MedicineController extends Controller
      */
     public function index()
     {
-        //
+        $medicines =Medicine::orderBy('id','DESC')->get();
+        $medTypes=Medicinetype::all();
+        //return view('medicine.index',compact('medicines','medTypes'));
+        return view('medicine.index1',compact('medicines','medTypes'));
     }
 
     /**
@@ -34,7 +40,21 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'typeid' => 'required',
+            'name' => 'required',
+            'chemical' => 'required',
+        ]);
+
+        $medicine=new Medicine();
+        $medicine->medicinetype_id=request('typeid');
+        $medicine->name=request('name');
+        $medicine->chemical=request('chemical');
+        $medicine->save();
+
+        $medicines=Medicine::orderBy('id','DESC')->get();
+
+        return response()->json(['success'=>'Record is successfully added!','medicines'=>$medicines]);
     }
 
     /**
@@ -56,7 +76,8 @@ class MedicineController extends Controller
      */
     public function edit($id)
     {
-        //
+        $medicine=Medicine::find($id);
+      return $medicine;
     }
 
     /**
@@ -68,7 +89,19 @@ class MedicineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($id);
+         $request->validate([
+            'typeid' => 'required',
+            'name' => 'required',
+            'chemical' => 'required',
+        ]);
+         $medicine=Medicine::find($id);
+         $medicine->name=request('name');
+         $medicine->medicinetype_id=request('typeid');
+         $medicine->chemical=request('chemical');
+         $medicine->save();
+         return response()->json(['success'=>'Record is successfully updated!','medicine'=>$medicine]);
+
     }
 
     /**
@@ -79,6 +112,18 @@ class MedicineController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $med = Medicine::find($id); // Can chain this line with the next one
+        $med->delete($id);
+        return response()->json(['success'=>'Record is successfully updated!']);
+        
+    }
+
+    public function getMedicine(){
+
+
+        $medicines=Medicine::orderBy('id','DESC')->get();
+
+        return MedicineResource::collection($medicines);
     }
 }

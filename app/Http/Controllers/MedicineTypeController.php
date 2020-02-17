@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Medicine_Type;
+use App\Medicinetype;
 
 class MedicineTypeController extends Controller
 {
@@ -14,7 +14,8 @@ class MedicineTypeController extends Controller
      */
     public function index()
     {
-        $medTypes=Medicine_Type::all();
+        $medTypes=Medicinetype::all();
+        //dd($medTypes);
         return view('medicinetype.index',compact('medTypes'));
     }
 
@@ -36,7 +37,7 @@ class MedicineTypeController extends Controller
      */
     public function store(Request $request)
     {
-        Medicine_Type::create([
+        Medicinetype::create([
             'name'=>request('name')
         ]);
         return back();
@@ -75,7 +76,7 @@ class MedicineTypeController extends Controller
     public function update(Request $request, $id)
     {
         //dd($request);
-        $medType=Medicine_Type::find($id);
+        $medType=Medicinetype::find($id);
         //dd($medType);
         $medType->name=request('name');
         $medType->update();
@@ -91,6 +92,7 @@ class MedicineTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Medicinetype::destroy($id);
+        return back();
     }
 }

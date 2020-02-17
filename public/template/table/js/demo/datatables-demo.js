@@ -11,9 +11,10 @@ $(document).ready(function() {
    sFirst: '<i class="fa fa-step-backward"></i>',
    sLast: '<i class="fa fa-step-forward"></i>'
    }
-   }  
+   } 
   }
  );
 
 
 });
+

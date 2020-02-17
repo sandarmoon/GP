@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMedicineTypesTable extends Migration
+class CreateReceptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateMedicineTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('medicine_types', function (Blueprint $table) {
+        Schema::create('receptions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('gender');
+            $table->string('phoneno');
+            $table->string('education');
+            $table->text('address');
+            $table->unsignedBigInteger('user_id');
+            $table->text('file');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,6 +33,6 @@ class CreateMedicineTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medicine__types');
+        Schema::dropIfExists('receptions');
     }
 }
