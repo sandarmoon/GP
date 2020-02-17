@@ -12,6 +12,7 @@ class User extends Authenticatable
 {
     use Notifiable,HasRoles;
     use SoftDeletes;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -40,6 +41,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function reception(){
+        return $this->hasMany('App\Reception');
+    }
     public function doctors(){
         return $this->hasMany('App\Doctor');
     }
