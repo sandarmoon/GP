@@ -117,7 +117,7 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-dob">Date of Birth</label>
-                        <input type="text" id="input-dob" name="dob" class="form-control form-control-alternative" placeholder="jesse@example.com">
+                        <input type="text" id="input-dob" name="dob" class="form-control form-control-alternative" placeholder="">
                       </div>
                     </div>
                   </div>

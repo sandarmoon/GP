@@ -40,3 +40,7 @@ Route::resource('patient','PatientController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Profit-expense
+
+Route::resource('/expense','ExpenseController');
