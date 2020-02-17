@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,HasRoles;
     use SoftDeletes;
     use HasRoles;
 
@@ -43,5 +43,8 @@ class User extends Authenticatable
 
     public function reception(){
         return $this->hasMany('App\Reception');
+    }
+    public function doctors(){
+        return $this->hasMany('App\Doctor');
     }
 }

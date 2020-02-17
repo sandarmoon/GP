@@ -27,6 +27,16 @@ Route::resource('/medicine','MedicineController');
 Route::get('/getMedicine','MedicineController@getMedicine')->name('getMedicine');
 Route::get('/getuser','ReceptionController@getuser')->name('getuser');
 
+//medicine
+Route::resource('/medicine','MedicineController');
+
+//Doctor
+Route::resource('doctor','DoctorController');
+Route::get('/getDoctor','DoctorController@getDoctor')->name('getDoctor');
+
+
+Route::get('/getMedicine','MedicineController@getMedicine')->name('getMedicine');
+
 Route::resource('patient','PatientController');
 Route::resource('reception','ReceptionController');
 

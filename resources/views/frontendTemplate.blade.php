@@ -32,13 +32,38 @@
   <link href="{{asset('template/assets/js/plugins/nucleo/css/nucleo.css')}}" rel="stylesheet" />
 
   <link href="{{asset('template/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{asset('template/assets/css/dataTables.css')}}">
   <!-- CSS Files -->
   <link href="{{asset('template/assets/css/argon-dashboard.css?v=1.1.1')}}" rel="stylesheet" />
   <link href="{{asset('template/table/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
+  <link href="{{asset('template/assets/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
+
+  <link href="{{asset('template/assets/css/mine.css')}}" rel="stylesheet">
+  <style type="text/css">
+    @media (max-width: 720px){
+        .profilemedia{
+           text-align: center;
+            margin-left: 183px;
+            margin-right: 0px;
+            margin-top: 0px;
+            padding-top: 0px;
+        }
+
+       
+
+
+    }
+  </style>
+
+
 </head>
 
 <body class="">
+
+  <div id = "dialog-4" title = "Dialog Title goes here...">
+        
+      </div>
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
@@ -302,11 +327,16 @@
   </div>
   <!--   Core   -->
   <script src="{{asset('template/assets/js/plugins/jquery/dist/jquery.min.js')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="{{asset('template/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+
+  <script src="{{asset('template/assets/datatables/jquery.dataTables.js')}}"></script>
+  <script src="{{asset('template/assets/datatables/dataTables.bootstrap4.js')}}"></script>
   <!--   Optional JS   -->
   <!--   Argon JS   -->
   <script src="{{asset('template/assets/js/argon-dashboard.min.js?v=1.1.1')}}"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+
    <script src="{{asset('template/table/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('template/table/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
@@ -314,13 +344,9 @@
   <script src="{{asset('template/table/js/demo/datatables-demo.js')}}"></script>
   <script type="text/javascript" src=""></script>
   <script src="{{asset('template/table/datatables/icon.js')}}"></script>
-  <script>
-    window.TrackJS &&
-      TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "argon-dashboard-free"
-      });
-  </script>
+
+ 
+
   @yield('script')
 </body>
 
