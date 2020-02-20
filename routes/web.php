@@ -48,3 +48,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Profit-expense
 
 Route::resource('/expense','ExpenseController');
+Route::get('/getExpense','ExpenseController@getExpense')->name('getExpense');
+Route::post('/searchReport','ExpenseController@searchReport')->name('searchReport');
