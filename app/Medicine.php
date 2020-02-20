@@ -13,4 +13,9 @@ class Medicine extends Model
     public function medicinetype(){
     	return $this->belongsTo('App\Medicinetype');
     }
+
+     public function treatments()
+    {
+        return $this->belongsToMany('App\Treatment');
+    }
 }

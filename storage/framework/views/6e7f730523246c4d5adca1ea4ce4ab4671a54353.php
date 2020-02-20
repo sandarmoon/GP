@@ -44,7 +44,7 @@
 <?php $__env->startSection('content'); ?>
 
   <div class="card-header border-0">
-      <h3 class="mb-0">Medicine tables</h3>
+      <h3 class="mb-0">Medicine Types </h3>
     </div>
     <div class="table-responsive p-3">
        <table class="table align-items-center table-white table-flush">

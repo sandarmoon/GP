@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
 
 	<div class=" ">
-      <div class="row pr-2">
+      <div class="row pr-2 mb-2">
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
           <div class="card card-profile shadow p-2 mt-5 bg-secondary CR" >
             
@@ -84,7 +84,7 @@
             </div>
             <div class="card-body">
               	<div class="table-responsive p-1">
-			       <table class="table align-items-center table-white table-flush">
+			       <table  class="table align-items-center table-white table-flush">
 			              <thead class="thead-light">
 			                <tr>
 			                  <th>No</th>
@@ -94,7 +94,7 @@
 			                  <th>Action</th>
 			                </tr>
 			              </thead>
-			              <tbody id="medicineTable">
+			              <tbody id="medicineTable" >
 			                
 			                
 			              </tbody>
@@ -157,6 +157,20 @@
     	})
     }
 
+    //using datatable js
+
+    // function getData(){
+    //   if ( $.fn.dataTable.isDataTable( '#medicineTable' ) ) {
+    //     console.log('yes it is');
+    //       table = $('#medicineTable').DataTable();
+    //   }else{
+    //     console.log('no it is not');
+    //      table = $('#medicineTable').DataTable( {
+    //         paging: false
+    //     } );
+    //   }
+      
+    // }
 
 
 

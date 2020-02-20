@@ -2,7 +2,9 @@
 @section('content')
 
   <div class="card-header border-0">
-      <h3 class="mb-0">Doctor tables</h3>
+
+      <h3 class="mb-0">Doctor List</h3>
+
       <div class="alert alert-success success d-none" role="alert">
           
       </div>
@@ -29,12 +31,12 @@
 
 <!-- Modal -->
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
   Launch demo modal
-</button>
+</button> -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -52,7 +54,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 

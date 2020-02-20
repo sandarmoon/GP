@@ -139,13 +139,65 @@
                         <input type="hidden" name="oldid" value="<?php echo e($doctor->id); ?>">
                         <input type="hidden" name="oldavatar" value="<?php echo e($doctor->avatar); ?>">
 
-                        <input type="file" id="input-certificate" multiple="multiple" name="certificate[]" class="form-control form-control-alternative" >
+                        
+
+                        <!-- start here -->
+
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#old-certificate" role="tab" aria-controls="home" aria-selected="true">Old</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#new-certificate" role="tab" aria-controls="profile" aria-selected="false">New</a>
+                        </li>
+                        
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="old-certificate" role="tabpanel" aria-labelledby="home-tab">
+                          
+                        </div>
+                        <div class="tab-pane fade" id="new-certificate" role="tabpanel" aria-labelledby="profile-tab">
+                          <input type="file" id="input-certificate" multiple="multiple" name="certificate[]" class="form-control form-control-alternative" >
+                        </div>
+                       
+                      </div>
+
+
+                        <!-- end here -->
+
                       </div>
                     </div>
                     <div class="col-lg-6">
+
+
+
                       <div class="form-group">
                         <label class="form-control-label" for="input-license">License</label>
-                        <input type="file" id="input-license" name="license[]" class="form-control form-control-alternative" multiple="multiple">
+
+                          <!-- start here -->
+
+                          <ul class="nav nav-tabs" id="myTab" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#old-license" role="tab" aria-controls="home" aria-selected="true">Old</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#new-license" role="tab" aria-controls="profile" aria-selected="false">New</a>
+                          </li>
+                          
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                          <div class="tab-pane fade show active" id="old-license" role="tabpanel" aria-labelledby="home-tab">
+                            
+                          </div>
+                          <div class="tab-pane fade" id="new-license" role="tabpanel" aria-labelledby="profile-tab">
+                            <input type="file" id="input-license" name="license[]" class="form-control form-control-alternative" multiple="multiple">
+                          </div>
+                         
+                        </div>
+
+
+                          <!-- end here -->
+                        
                       </div>
                     </div>
                     
@@ -202,7 +254,56 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
 <script type="text/javascript">
+  //for showing the photo see start
+    
+    window.onload=function start(){
+      var certificates=document.querySelector('[name="oldcertificate"]');
+       var list=certificates.value;
+
+       var list=JSON.parse(list);
+
+        var html1='';var license='';
+      for(var j=0;j<list.length;j++){
+        console.log(list[j]);
+            var frame=`<img src="<?php echo e(asset(':v')); ?>" class="ml-2" width="40" height="40" >`;
+            html1+=frame.replace(':v',list[j]);
+            document.querySelector('#old-certificate').innerHTML=html1;
+
+        }
+
+        var licenses=document.querySelector('[name="oldlicense"]');
+       var list=licenses.value;
+
+       var list=JSON.parse(list);
+
+        
+      for(var l=0;l<list.length;l++){
+        console.log(list[l]);
+            var frame=`<img src="<?php echo e(asset(':v')); ?>" class="ml-2" width="40" height="40" >`;
+            license+=frame.replace(':v',list[l]);
+            document.querySelector('#old-license').innerHTML=license;
+
+        }
+    }
+    
+
+
+
+    //end here
+
+    //function for loading
+
+    function loading(list,placement){
+      
+    }
+
+
 	$('document').ready(function(){
+    
+
+
+
+
 		 $.ajaxSetup({
 		        headers: {
 		            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

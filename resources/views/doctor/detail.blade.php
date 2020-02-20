@@ -39,25 +39,31 @@
                           Unknown 
                           @endif 
                         </h3></div>
-                       <div><span>Certificate:</span><h3 class="ml-2 d-inline-block"> 
+                       <div id="preview-certificate" data-img={{$doctor->certificate}}><span>Certificate:</span>
                         @if(!empty($doctor->certificate))
-                          @php 
-                          $array=json_decode($doctor->certificate,true);
-                          echo "<span data-list=$doctor->certificate class='showImage'>".count($array)."files</span>";
-                          @endphp
+                          
+                          <?php $array=json_decode($doctor->certificate,true);
+                            foreach($array as $k=>$a):?>
+                            <img src="{{asset($a)}}" class="showimg"  data-id="{{$k}}" data-img="{{$doctor->certificate}}" width="40" height="40">
+                          
+                          <?php endforeach; ?>
                          
                           @endif
 
 
 
-                       </h3></div>
-                       <div><span>License:</span><h3 class="ml-2 d-inline-block"> @if(!empty($doctor->license))
-                          @php 
-                          $array=json_decode($doctor->license,true);
-                          echo "<span data-list=$doctor->license class='showImage'>".count($array)."files</span>";
-                          @endphp
+                       </div>
+                       <div id="preview-license" data-img={{$doctor->license}}><span>License:</span>
+                        @if(!empty($doctor->license))
+                          
+                          <?php $array=json_decode($doctor->license,true);
+                            foreach($array as $k=>$a):?>
+                            <img src="{{asset($a)}}" class="showimg" data-id="{{$k}}"   width="40" height="40">
+                          
+                          <?php endforeach; ?>
                          
-                          @endif</h3></div>
+                          @endif
+                        </div>
                     </div>
             </div>
             <div class="col-lg-6 col-md-6 order-md-0  order-lg-0">
@@ -106,40 +112,33 @@
       
     </div>
 
-    <div class="modal fade" id="showphoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal fade bd-example-modal-lg" id="showphoto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body show">
-              
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+            <!-- carousel start -->
+              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner bigpreview">
+                  
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            <!-- carousel end -->
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="showphoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body show">
-              
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+        <div class="modal-content preimages">
+         
+          
         </div>
       </div>
     </div>
@@ -159,85 +158,39 @@
     
             
 
-     $('.showImage').click(function(){
-      var list=$(this).data('list');
-      //var listarray=JSON.parse(list);
-      var html="";
-      let frame= '<div > <img src={{asset(":v")}} class="preview" data-img=":va" width=50 height=50 alt="hello"></img></div>';
-      $.each(list,function(i,v){
-        frame=frame.replace(':v',v);
-        frame=frame.replace(':va',v);
-        html+=frame;
-      })
-      $('.show').html(html);
-      $( "#showphoto" ).modal( "show" );
-     });
+     $('#preview-certificate').on('click','.showimg',function(){
+        var list=$('#preview-certificate').data('img');
+       
+      showCarousel(list,'Certificate');
 
-     // $('.show').on('click','.preview',function(){
-     //  let image=$(this).data('img');
-     //  let h='';
-     //  h=`<img src=${image} class="preview" data-img=":va" width=50 height=50 alt="hello"></img>`;
-     //  $('.show').html(h);
-     //  $('#showphoto').modal(show);
+     })
 
-     // })
+     $('#preview-license').on('click','.showimg',function(){
+        var list=$('#preview-license').data('img');
+        showCarousel(list,"License");
+     })
 
+     function showCarousel(list,text){
+          var html=''; var isfrist=true;
+          $.each(list,function(i,v){
 
+            var carou=`<div class="`
+            if(isfrist){
+              carou+=`active `;
+            }
 
-     // $('.certiButton').click(function(){
-     //  var list=$(this).data('list');
-     //  //var listarray=JSON.parse(list);
-     //  var html="";
-     //  let frame= '<div> <img src={{asset(":v")}} width=50 height=50 alt="hello"></img></div>';
-     //  $.each(list,function(i,v){
-     //    frame=frame.replace(':v',v);
-     //    html+=frame;
-     //  })
-     //  $('.show').html(html);
-     //  $( "#showphoto" ).modal( "show" );
-     // })
+            carou+=`carousel-item">
 
-    
-
-    // $('#doctorResume').submit(function(e){
-    //   e.preventDefault();
-    //   var formData= new FormData(this);
-    //   var url="{{route('doctor.store')}}";
-    //   $.ajax({
-    //             type:'POST',
-    //             url: url,
-    //             data: formData,
-    //             cache:false,
-    //             contentType: false,
-    //             processData: false,
-    //             success: (data) => {
-    //                 this.reset();
-    //                 window.location.href="{{route('doctor.index')}}"
-    //             },
-    //             error: function(error){
-    //                var errors=error.responseJSON.errors;
-    //                if(errors){
-                   
-    //                 $('.Ename').text(errors.name);
-    //                 $('.Epassword').text(errors.password);
-    //                  $('.Eemail').text(errors.email);
-    //                 $('span.error').addClass('text-danger');
-    //                }
-    //             }
-    //         });
-    // })
-
-    // $('input[name="avatar"]').change(function(){
-    //   //alert('hello');
-    //   var  reader=new FileReader();
-    //   reader.onload=(e)=>{
-
-    //     $('#profileholder').attr('src',e.target.result);
-    //     $('#profileholder').removeClass('d-none');
-    //     $('.ni-settings').hide();
-    //   }
-    //   reader.readAsDataURL(this.files[0]); 
-    // })
+          <img src="{{asset(':v')}}" class="d-block w-100" height = '500' alt="...">
+        </div>`;
+            carou=carou.replace(':v',v);
+            html+=carou;
+            isfrist=false;
+          })
+          $('.caption').html(text);
+          $('.bigpreview').html(html);
+          $('#showphoto').modal('show');
+     }
   })
 </script>
 @endsection

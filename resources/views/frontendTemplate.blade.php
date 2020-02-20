@@ -42,6 +42,8 @@
   <link href="{{asset('template/assets/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
 
   <link href="{{asset('template/assets/css/mine.css')}}" rel="stylesheet">
+  <link href="{{asset('dist/css/select2.min.css')}}" rel="stylesheet" />
+  
   <style type="text/css">
     @media (max-width: 720px){
         .profilemedia{
@@ -346,6 +348,7 @@
   <script src="{{asset('template/table/js/demo/datatables-demo.js')}}"></script>
   <script type="text/javascript" src=""></script>
   <script src="{{asset('template/table/datatables/icon.js')}}"></script>
+  <script src="{{asset('dist/js/select2.min.js')}}"></script>
 
   <script>
 

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Treatment;
+use App\Patient;
 class TreatmentController extends Controller
 {
     /**
@@ -34,7 +35,68 @@ class TreatmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //dd($request);
+         $request->validate([
+             'gc'=>'required',
+             'complaint' =>'required',
+             'diagnosis' =>'required',
+             'charges' =>'required|numeric',
+         ]);
+
+          if($request->hasfile('file'))
+        {
+            $upload_dir = 'storages/files/';
+
+            $files = $request->file('file');
+            foreach($files as $file)
+            {
+                $name = time().uniqid(rand()).'.'.$file->getClientOriginalExtension();
+                $file->move($upload_dir, $name);
+               $path[] = $upload_dir . $name;
+            }
+        }
+        //dd(request('temperature'));
+        $treatment=new Treatment; 
+        $treatment->file=json_encode($path);
+        $treatment->gc_level=request('gc');
+        $treatment->temperature=request('temperature');
+        $treatment->body_weight=request('bodyWeight');
+        $treatment->spo2=request('spo2');
+        $treatment->pr=request('pr');
+        $treatment->bp=request('bp');
+        $treatment->rbs=request('rbs');
+        $treatment->complaint=request('complaint');
+        $treatment->examination=request('onexam');
+        $treatment->relevant_info=request('relevantinfo');
+        $treatment->chronic_disease=request('ud');
+        $treatment->diagnosis=request('diagnosis');
+        $treatment->external_medicine=request('externalMedicine');
+        $treatment->next_visit_date=request('nextVisitDate1');
+        $treatment->next_visit_date2=request('nextVisitDate2');
+        $treatment->patient_id=request('patientid');
+        $treatment->charges=request('charges');
+        $treatment->save();
+        $drugs=json_decode(request('drugs'));
+        //dd(($drugs));
+        foreach ($drugs as $key => $drug) {
+            $tab=$drug->tab;
+            //dd($tab);
+            $time=$drug->time;
+            $bf=$drug->bf;
+            $duration=$drug->duration;
+        $treatment->medicines()->attach(1,['tab' => $tab, 'interval' => $time,'meal'=>$bf,'during'=>$duration]);     
+        }
+        $injections=json_decode(request('injections'));
+        //dd(($drugs));
+        foreach ($injections as $key => $injection) {
+           $type=$injection->injectiontype;
+        $treatment->medicines()->attach(1,['type' => $type]);     
+        }
+        $patient = Patient::find(request('patientid'));
+        //dd($patient);
+        $patient->status=1;
+        $patient->save();
     }
 
     /**
