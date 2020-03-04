@@ -18,29 +18,29 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>GP clinic</title>
   <!-- Favicon -->
-  <link href="{{asset('template/assets/img/brand/favicon.png')}}" rel="icon" type="image/png">
+  <link href="<?php echo e(asset('template/assets/img/brand/favicon.png')); ?>" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
   <!-- Icons -->
-  <link href="{{asset('template/assets/js/plugins/nucleo/css/nucleo.css')}}" rel="stylesheet" />
+  <link href="<?php echo e(asset('template/assets/js/plugins/nucleo/css/nucleo.css')); ?>" rel="stylesheet" />
 
-  <link href="{{asset('template/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="{{asset('template/assets/css/dataTables.css')}}">
+  <link href="<?php echo e(asset('template/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css')); ?>" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="<?php echo e(asset('template/assets/css/dataTables.css')); ?>">
   <!-- CSS Files -->
-  <link href="{{asset('template/assets/css/argon-dashboard.css?v=1.1.1')}}" rel="stylesheet" />
+  <link href="<?php echo e(asset('template/assets/css/argon-dashboard.css?v=1.1.1')); ?>" rel="stylesheet" />
 
-  <link href="{{asset('template/table/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+  <link href="<?php echo e(asset('template/table/datatables/dataTables.bootstrap4.min.css')); ?>" rel="stylesheet">
 
 
-  <link href="{{asset('template/assets/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
+  <link href="<?php echo e(asset('template/assets/datatables/dataTables.bootstrap4.css')); ?>" rel="stylesheet">
 
-  <link href="{{asset('template/assets/css/mine.css')}}" rel="stylesheet">
-  <link href="{{asset('dist/css/select2.min.css')}}" rel="stylesheet" />
+  <link href="<?php echo e(asset('template/assets/css/mine.css')); ?>" rel="stylesheet">
+  <link href="<?php echo e(asset('dist/css/select2.min.css')); ?>" rel="stylesheet" />
   
   <style type="text/css">
     @media (max-width: 720px){
@@ -73,7 +73,7 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="../index.html">
-        <img src="{{asset('template/assets/img/brand/blue.png')}}" class="navbar-brand-img" alt="...">
+        <img src="<?php echo e(asset('template/assets/img/brand/blue.png')); ?>" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -92,7 +92,8 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="{{asset('template/assets/img/theme/team-1-800x800.jpg')}}
+                <img alt="Image placeholder" src="<?php echo e(asset('template/assets/img/theme/team-1-800x800.jpg')); ?>
+
 ">
               </span>
             </div>
@@ -132,7 +133,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="../index.html">
-                <img src="{{asset('template/assets/img/brand/blue.png')}}">
+                <img src="<?php echo e(asset('template/assets/img/brand/blue.png')); ?>">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -240,7 +241,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{asset('template/assets/img/theme/team-4-800x800.jpg')}}">
+                  <img alt="Image placeholder" src="<?php echo e(asset('template/assets/img/theme/team-4-800x800.jpg')); ?>">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
@@ -283,13 +284,13 @@
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->
-         @yield('add')
+         <?php echo $__env->yieldContent('add'); ?>
         </div>
       </div>
     </div>
     <div class="container-fluid mt--7">
       
-      @yield('content')
+      <?php echo $__env->yieldContent('content'); ?>
      
       <!-- Footer -->
       <footer class="footer">
@@ -320,25 +321,25 @@
     </div>
   </div>
   <!--   Core   -->
-  <script src="{{asset('template/assets/js/plugins/jquery/dist/jquery.min.js')}}"></script>
+  <script src="<?php echo e(asset('template/assets/js/plugins/jquery/dist/jquery.min.js')); ?>"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="{{asset('template/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="<?php echo e(asset('template/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')); ?>"></script>
 
-  <script src="{{asset('template/assets/datatables/jquery.dataTables.js')}}"></script>
-  <script src="{{asset('template/assets/datatables/dataTables.bootstrap4.js')}}"></script>
+  <script src="<?php echo e(asset('template/assets/datatables/jquery.dataTables.js')); ?>"></script>
+  <script src="<?php echo e(asset('template/assets/datatables/dataTables.bootstrap4.js')); ?>"></script>
   <!--   Optional JS   -->
   <!--   Argon JS   -->
-  <script src="{{asset('template/assets/js/argon-dashboard.min.js?v=1.1.1')}}"></script>
+  <script src="<?php echo e(asset('template/assets/js/argon-dashboard.min.js?v=1.1.1')); ?>"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 
-   <script src="{{asset('template/table/datatables/jquery.dataTables.min.js')}}"></script>
-  <script src="{{asset('template/table/datatables/dataTables.bootstrap4.min.js')}}"></script>
+   <script src="<?php echo e(asset('template/table/datatables/jquery.dataTables.min.js')); ?>"></script>
+  <script src="<?php echo e(asset('template/table/datatables/dataTables.bootstrap4.min.js')); ?>"></script>
 
   <!-- Page level custom scripts -->
-  <script src="{{asset('template/table/js/demo/datatables-demo.js')}}"></script>
+  <script src="<?php echo e(asset('template/table/js/demo/datatables-demo.js')); ?>"></script>
   <script type="text/javascript" src=""></script>
-  <script src="{{asset('template/table/datatables/icon.js')}}"></script>
-  <script src="{{asset('dist/js/select2.min.js')}}"></script>
+  <script src="<?php echo e(asset('template/table/datatables/icon.js')); ?>"></script>
+  <script src="<?php echo e(asset('dist/js/select2.min.js')); ?>"></script>
 
   <script>
 
@@ -353,7 +354,7 @@
       
   </script>
 
-  @yield('script')
+  <?php echo $__env->yieldContent('script'); ?>
 </body>
 
-</html>
+</html><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/GP/resources/views/frontendTemplate.blade.php ENDPATH**/ ?>

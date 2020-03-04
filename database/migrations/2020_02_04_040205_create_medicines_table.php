@@ -20,6 +20,10 @@ class CreateMedicinesTable extends Migration
             $table->text('chemical');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('medicinetype_id')
+                  ->references('id')->on('medicinetypes')
+                  ->onDelete('cascade');
         });
     }
 
