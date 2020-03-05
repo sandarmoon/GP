@@ -110,7 +110,9 @@ class MedicineTypeController extends Controller
      */
     public function destroy($id)
     {
-        Medicinetype::destroy($id);
-        return back();
+        
+        $medicinetype = Medicinetype::find($id); // Can chain this line with the next one
+        $medicinetype->delete($id);
+        return response()->json(['success'=>'Record is successfully updated!']);
     }
 }
