@@ -28,6 +28,8 @@ Route::resource('/medicineType','MedicineTypeController');
 Route::resource('/treatment','TreatmentController');
 
 // Json responses
+Route::get('/getMedicineType','MedicineTypeController@getMedicineType')->name('medicineType.getType');
+
 Route::get('/getMedicine','MedicineController@getMedicine')->name('getMedicine');
 
 Route::get('/getuser','ReceptionController@getuser')->name('getuser');
@@ -47,6 +49,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Profit-expense
 Route::resource('/expense','ExpenseController');
+
+Route::get('/getExpense','ExpenseController@getExpense')->name('getExpense');
+Route::post('/searchReport','ExpenseController@searchReport')->name('searchReport');
 
 Route::get('/appointpatient','AppointmentController@index')->name('appointpatient');
 

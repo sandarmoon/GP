@@ -142,6 +142,7 @@
 <script type="text/javascript">
   $('document').ready(function(){
   	getData();
+    //getDatas();
 
   	$('#EditMedicine').hide();
 
@@ -160,16 +161,16 @@
     	$.get("{{route('getMedicine')}}",function(response){
     		var j=1;
     		var html='';
-    		$.each(response.data,function(i,v){
+    		$.each(response,function(i,v){
     			// console.log(v);
             		html+=`<tr>
 			                    <td>${j++}</td>
-			                    <td>${v.medicine['name']}</td>
+			                    <td>${v.name}</td>
 			                    <td>${v.medcinetype}</td>
-			                    <td>${v.medicine.chemical}</td>
+			                    <td>${v.chemical}</td>
 			                    <td>
-			                       <button class="btn btn-primary btn-sm d-inline-block btnEdit " data-id="${v.medicine.id}"><i class="ni ni-settings"></i></button>
-					                  <button class="btn btn-danger btn-sm d-inline-block btnDelete " data-id="${v.medicine.id}"> <i class="ni ni-fat-delete"></i></button>
+			                       <button class="btn btn-primary btn-sm d-inline-block btnEdit " data-id="${v.id}"><i class="ni ni-settings"></i></button>
+					                  <button class="btn btn-danger btn-sm d-inline-block btnDelete " data-id="${v.id}"> <i class="ni ni-fat-delete"></i></button>
 			                       
 			                    </td>
 
@@ -183,17 +184,33 @@
 
     //using datatable js
 
-    // function getData(){
-    //   if ( $.fn.dataTable.isDataTable( '#medicineTable' ) ) {
-    //     console.log('yes it is');
-    //       table = $('#medicineTable').DataTable();
-    //   }else{
-    //     console.log('no it is not');
-    //      table = $('#medicineTable').DataTable( {
-    //         paging: false
+    // function getDatas(){
+    //   // console.log('you make it');
+    //   $.get("{{route('getMedicine')}}",function(response){
+    //     var j=1;
+    //     var html='';
+    //    console.log(response);
+    //        $('#medicineTables').DataTable( {
+    //         data: response,
+    //         "fnDrawCallback": function ( oSettings ) {
+    //             /* Need to redo the counters if filtered or sorted */
+    //             if ( oSettings.bSorted || oSettings.bFiltered )
+    //             {
+    //                 this.$('td:first-child', {"filter":"applied"}).each( function (i) {
+    //                     that.fnUpdate( i+1, this.parentNode, 0, false, false );
+    //                 } );
+    //             }
+    //         },
+    //         columns: [
+    //             { data: "name" },
+    //             { data: "chemical" },
+                
+                
+    //         ],
+    //         "aaSorting": [[ 1, 'asc' ]]
+
     //     } );
-    //   }
-      
+    //   })
     // }
 
 

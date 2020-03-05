@@ -1,5 +1,4 @@
-@extends('frontendTemplate')
-@section('style')
+<?php $__env->startSection('style'); ?>
 <style type="text/css">
   .parent {
   position: relative;
@@ -35,7 +34,7 @@
 </style>
 
 @endseciton
-@section('add')
+<?php $__env->startSection('add'); ?>
 	<div class="row">
         <div class="col-xl-3 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0">
@@ -122,8 +121,8 @@
           </div>
         </div>
       </div>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 	<div class="row mt-5 p-2">
         <div class="col-xl-12 mb-5 mb-xl-0">
           <div class="card shadow">
@@ -476,8 +475,8 @@
 </div>
       <!-- modal end -->
 
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
 <script type="text/javascript">
 //chart start
 /*var ctx = document.getElementById('myChart').getContext('2d');
@@ -601,7 +600,7 @@ var myChart = new Chart(ctx, {
     var startdate=$('#search input[name="startdate"]').val();
     var enddate=$('#search input[name="enddate"]').val();
     // console.log(startdate,enddate);
-      var url="{{route('searchReport')}}";
+      var url="<?php echo e(route('searchReport')); ?>";
       $.ajax({
                 type:'POST',
                 url: url,
@@ -670,7 +669,7 @@ var myChart = new Chart(ctx, {
     $('#expense-from').submit(function(e){
       e.preventDefault();
       var formdata= new FormData(this);
-      var url="{{route('expense.store')}}";
+      var url="<?php echo e(route('expense.store')); ?>";
       // formData.append('_method', 'PUT');
           $.ajax({
                 type:'POST',
@@ -710,7 +709,7 @@ var myChart = new Chart(ctx, {
       e.preventDefault();
       var id=$('#oldID').val();
       var formdata= new FormData(this);
-      var url="{{route('expense.update',':oldID')}}";
+      var url="<?php echo e(route('expense.update',':oldID')); ?>";
       url=url.replace(':oldID',id);
       formdata.append('_method', 'PUT');
           $.ajax({
@@ -745,7 +744,7 @@ var myChart = new Chart(ctx, {
     function getData(){
       console.log('you make it');
 
-      $.get("{{route('getExpense')}}",function(response){
+      $.get("<?php echo e(route('getExpense')); ?>",function(response){
         console.log(response);
         var j=1;
         var html='';
@@ -777,7 +776,7 @@ var myChart = new Chart(ctx, {
 
        var obj=response.report;
        var chart = Object.values(obj);
-
+       
        // console.log(Object.values(obj));
        // var arr=Object.entries(obj);
        // $.each(arr,function(i,v){
@@ -788,6 +787,7 @@ var myChart = new Chart(ctx, {
        // })
        // chart+= ']';
        // console.log(chart);
+
 
        //start here
        var ctx = $('#myChart');
@@ -804,6 +804,12 @@ var myChart = new Chart(ctx, {
             }
         });
        //end here
+
+       
+
+
+
+
       })
     }
 
@@ -829,7 +835,7 @@ var myChart = new Chart(ctx, {
          $('#oldID').val(id);
        $('#editExpense').modal('show');
 
-     // var url="{{route('expense.edit',':id')}}";
+     // var url="<?php echo e(route('expense.edit',':id')); ?>";
     })
 //image show after deleting one by one
 
@@ -838,7 +844,7 @@ function showImage(palcement,files){
         $.each(files,function(i,v){
           var frame= `
           <div class="d-inline parent my-2">
-              <img src="{{asset(':v')}}" width ='100px' height="80px" class="img-fluid p-2"/>
+              <img src="<?php echo e(asset(':v')); ?>" width ='100px' height="80px" class="img-fluid p-2"/>
               <div  class="top-right d-inline text-danger  img-remove" data-id="${i}">
                  <i class="ni ni-fat-remove" title="delete it!"></i>
               </div>
@@ -878,7 +884,7 @@ function showImage(palcement,files){
       //alert('i am delete');
       var id=$(this).data('id');
       console.log(id);
-       var url="{{route('expense.destroy',':id')}}";
+       var url="<?php echo e(route('expense.destroy',':id')); ?>";
       
        url=url.replace(':id',id);
 
@@ -915,5 +921,7 @@ function showImage(palcement,files){
 </script>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('frontendTemplate', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/teach_prj/clinic/resources/views/expense/index.blade.php ENDPATH**/ ?>

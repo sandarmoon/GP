@@ -57,6 +57,7 @@
       font-size: 0.875rem;
     }
   </style>
+  <?php echo $__env->yieldContent('style'); ?>
 
 </head>
 
@@ -326,12 +327,14 @@
   <script src="<?php echo e(asset('template/assets/datatables/jquery.dataTables.js')); ?>"></script>
   <script src="<?php echo e(asset('template/assets/datatables/dataTables.bootstrap4.js')); ?>"></script>
   <!--   Optional JS   -->
+  <script src="<?php echo e(asset('template/assets/js/plugins/chart.js/dist/Chart.min.js')); ?>"></script>
+  <script src="<?php echo e(asset('template/assets/js/plugins/chart.js/dist/Chart.extension.js')); ?>"></script>
   <!--   Argon JS   -->
-  <script src="<?php echo e(asset('template/assets/js/argon-dashboard.min.js?v=1.1.1')); ?>"></script>
-  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <!-- <script src="<?php echo e(asset('template/assets/js/argon-dashboard.min.js?v=1.1.1')); ?>"></script> -->
+  <!-- <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script> -->
 
-   <script src="<?php echo e(asset('template/table/datatables/jquery.dataTables.min.js')); ?>"></script>
-  <script src="<?php echo e(asset('template/table/datatables/dataTables.bootstrap4.min.js')); ?>"></script>
+  <!--  <script src="<?php echo e(asset('template/table/datatables/jquery.dataTables.min.js')); ?>"></script> -->
+  <!-- <script src="<?php echo e(asset('template/table/datatables/dataTables.bootstrap4.min.js')); ?>"></script> -->
 
   <!-- Page level custom scripts -->
   <script src="<?php echo e(asset('template/table/js/demo/datatables-demo.js')); ?>"></script>
@@ -340,6 +343,7 @@
   <script src="<?php echo e(asset('dist/js/select2.min.js')); ?>"></script>
 
   <script>
+
 
     // window.$('table').DataTable();
     window.TrackJS &&

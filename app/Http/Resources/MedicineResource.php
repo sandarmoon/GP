@@ -16,7 +16,10 @@ class MedicineResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
-            'medicine'=>parent::toArray($request),
+            'id'=>$this->id,
+            'name'=>$this->name,
+            'chemical'=>$this->chemical,
+            'medicinetype_id'=>$this->medicinetype_id,
             'medcinetype'=>$this->medicinetype->name
         ];
 

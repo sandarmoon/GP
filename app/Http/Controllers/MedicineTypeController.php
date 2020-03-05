@@ -15,8 +15,15 @@ class MedicineTypeController extends Controller
     public function index()
     {
         $medTypes=Medicinetype::all();
-        //dd($medTypes);
-        return view('medicinetype.index',compact('medTypes'));
+         return view('medicinetype.index1',compact('medTypes'));
+       // return $medTypes;
+    }
+
+    public function getMedicineType()
+    {
+        $medTypes=Medicinetype::all();
+       
+        return $medTypes;
     }
 
     /**
@@ -37,10 +44,16 @@ class MedicineTypeController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+           
+            'name' => 'required',
+            
+        ]);
+
         Medicinetype::create([
             'name'=>request('name')
         ]);
-        return back();
+       return response()->json(['success'=>'Data is successfully added!']);
         //echo "made it";
     }
 
@@ -75,6 +88,11 @@ class MedicineTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+           
+            'name' => 'required',
+            
+        ]);
         //dd($request);
         $medType=Medicinetype::find($id);
         //dd($medType);
