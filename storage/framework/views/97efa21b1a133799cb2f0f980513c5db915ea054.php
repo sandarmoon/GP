@@ -35,11 +35,15 @@
   <link rel="stylesheet" type="text/css" href="<?php echo e(asset('template/assets/css/dataTables.css')); ?>">
   <!-- CSS Files -->
   <link href="<?php echo e(asset('template/assets/css/argon-dashboard.css?v=1.1.1')); ?>" rel="stylesheet" />
+
   <link href="<?php echo e(asset('template/table/datatables/dataTables.bootstrap4.min.css')); ?>" rel="stylesheet">
+
 
   <link href="<?php echo e(asset('template/assets/datatables/dataTables.bootstrap4.css')); ?>" rel="stylesheet">
 
   <link href="<?php echo e(asset('template/assets/css/mine.css')); ?>" rel="stylesheet">
+  <link href="<?php echo e(asset('dist/css/select2.min.css')); ?>" rel="stylesheet" />
+  
   <style type="text/css">
     @media (max-width: 720px){
         .profilemedia{
@@ -345,8 +349,20 @@
   <script src="<?php echo e(asset('template/table/js/demo/datatables-demo.js')); ?>"></script>
   <script type="text/javascript" src=""></script>
   <script src="<?php echo e(asset('template/table/datatables/icon.js')); ?>"></script>
+  <script src="<?php echo e(asset('dist/js/select2.min.js')); ?>"></script>
 
- 
+  <script>
+
+    // window.$('table').DataTable();
+    window.TrackJS &&
+      TrackJS.install({
+        token: "ee6fab19c5a04ac1a32a645abde4613a",
+        application: "argon-dashboard-free"
+      });
+
+     
+      
+  </script>
 
   <?php echo $__env->yieldContent('script'); ?>
 </body>

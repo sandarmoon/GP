@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Expense;
+use App\Treatment;
+use Carbon;
+use DB;
 
 class ExpenseController extends Controller
 {
@@ -141,8 +144,38 @@ class ExpenseController extends Controller
     }
 
     public function getExpense(){
+        $dateS = Carbon::now()->startOfMonth()->subMonth(3);
+        $dateE = Carbon::now()->startOfMonth()->addMonth(1); 
+        // echo $dateS.$dateE;
+        // $TotalSpent = DB::table('orders')
+        // ->select('total_cost','placed_at')
+        // ->whereBetween('placed_at',[$dateS,$dateE])
+        // ->where(['deleted' => '0', 'delivery_address_id' => $DeliveryAddress->id])
+        // ->sum('total_cost');
+
+        // $records = Treatment::whereMonth('created_at', '>=', $dateS)
+        //     ->whereMonth('created_at', '<=', $dateE)
+        //     ->get();
+        //$records=Treatment::whereBetween('created_at',array($dateS,$dateE))->get();
+
+       
+        $data= Treatment::all()
+        
+        ->sortByDESC(function ($item) {
+        return $item->created_at->month;
+        })
+        ->sortByDESC(function ($item) {
+        return $item->created_at->year;
+        })
+        ->whereBetween('created_at', [ Carbon::now()->startOfMonth()->subMonth(5), Carbon::now()->startOfMonth()])
+        
+        ->groupBy(function ($item) {
+             return $item->created_at->format("F:Y");
+        })->map
+        ->sum('charges');
+
         $expenses=Expense::orderBy('id','DESC')->get();
-        return $expenses;
+        return response()->json(['expenses'=>$expenses,'report'=>$data]);;
     }
 
     public function searchReport(Request $request){
@@ -155,6 +188,19 @@ class ExpenseController extends Controller
        $enddate=request('enddate');
 
        $totalexpense=Expense::whereBetween('date',array($startdate,$enddate))->sum('amount');
-       return response()->json(['totalExpense'=>$totalexpense]);
+
+       $date_from = Carbon::parse($startdate)->startOfDay();
+        $date_to = Carbon::parse($enddate)->endOfDay();
+
+        $totalIncome = Treatment::whereDate('created_at', '>=', $date_from)
+            ->whereDate('created_at', '<=', $date_to)
+            ->sum('charges')
+            ->toArray();
+
+       return response()->json(['totalExpense'=>$totalexpense,'totalIncome'=>$totalIncome]);
     }
+
+    
+
+
 }

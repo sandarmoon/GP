@@ -2,7 +2,9 @@
 @section('content')
 
   <div class="card-header border-0">
+
       <h3 class="mb-0">Doctor List</h3>
+
       <div class="alert alert-success success d-none" role="alert">
           
       </div>

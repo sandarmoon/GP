@@ -18,17 +18,19 @@
 Route::get('/', 'FrontendController@index');
 
 // Treatment
-// Route::resource('/treatment','TreatmentController');
+ Route::resource('/treatment','TreatmentController');
 
 //Medicine Type
 
 Route::resource('/medicineType','MedicineTypeController');
+Route::get('/getMedicineType','MedicineTypeController@getMedicineType')->name('medicineType.getType');
 Route::resource('/medicine','MedicineController');
 Route::get('/getMedicine','MedicineController@getMedicine')->name('getMedicine');
 Route::get('/getuser','ReceptionController@getuser')->name('getuser');
 
 //medicine
-Route::resource('/medicine','MedicineController');
+// Route::resource('/medicine','MedicineController');
+//Route::resource('/','MedicineController');
 
 //Doctor
 Route::resource('doctor','DoctorController');
@@ -48,5 +50,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Profit-expense
 
 Route::resource('/expense','ExpenseController');
+
 Route::get('/getExpense','ExpenseController@getExpense')->name('getExpense');
 Route::post('/searchReport','ExpenseController@searchReport')->name('searchReport');
+
+Route::get('/appointpatient','AppointmentController@index')->name('appointpatient');
+Route::get('/appointpatienthistory/{id}','AppointmentController@patient')->name('appointpatienthistory');
+Route::post('/appmedicine','AppointmentController@getmedicine')->name('appmedicine');
