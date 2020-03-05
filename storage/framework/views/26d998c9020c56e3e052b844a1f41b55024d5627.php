@@ -1,0 +1,1 @@
+index.blade.php<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/GP/resources/views/expense/index.blade.php ENDPATH**/ ?>

@@ -27,6 +27,7 @@
   		      <div class="form-group">
   		        <label for="medicineType" class="sfont">Choose Medicine Type</label>
   	            <select class="form-control" name="type_id"  id="medicineType">
+                  <option value="">Choose Type</option>
   	              @foreach($medTypes as $medType)
   	              <option value="{{$medType->id}}">{{$medType->name}}</option>
   	              @endforeach

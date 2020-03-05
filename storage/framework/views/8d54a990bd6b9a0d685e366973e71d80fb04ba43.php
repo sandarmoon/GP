@@ -92,9 +92,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="<?php echo e(asset('template/assets/img/theme/team-1-800x800.jpg')); ?>
-
-">
+                <img alt="Image placeholder" src="<?php echo e(asset('template/assets/img/theme/team-1-800x800.jpg')); ?>">
               </span>
             </div>
           </a>
@@ -220,7 +218,7 @@
   </nav>
   <div class="main-content">
     <!-- Navbar -->
-    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+    <nav class="navbar navbar-top navbar-expand-lg navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html"><i class="ni ni-bullet-list-67"></i> Version 2.1</a>

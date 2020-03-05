@@ -1,5 +1,4 @@
-@extends('frontendTemplate')
-@section('content')
+<?php $__env->startSection('content'); ?>
 	
   <div class="row">
     <div class="col-12">
@@ -33,7 +32,7 @@
     </div>
   </div>
            
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -216,7 +215,7 @@
 </div>
 </div>
 
-@section('script')
+<?php $__env->startSection('script'); ?>
 <script type="text/javascript">
   $(document).ready(function(){
       getData();
@@ -234,7 +233,7 @@
 
                   $.ajax({
                 type:'POST',
-                url: "{{ url('reception')}}",
+                url: "<?php echo e(url('reception')); ?>",
                 data: formData,
                 cache:false,
                 contentType: false,
@@ -288,7 +287,7 @@
 
 
             function getData(){
-      $.get("{{route('getuser')}}",function(response){
+      $.get("<?php echo e(route('getuser')); ?>",function(response){
           //  console.log(response)
             var j=1;
             var html='';
@@ -329,7 +328,7 @@
                   
 
                   var id=$(this).data('id');
-                  var url="{{route('reception.edit',':id')}}";
+                  var url="<?php echo e(route('reception.edit',':id')); ?>";
       
             url=url.replace(':id',id);
             $.get(url,function(res){
@@ -371,7 +370,7 @@
                  var formData = new FormData(this);
                  formData.append('_method','PUT');
                 //console.log(formData);
-                  var url="{{route('reception.update',':id')}}";
+                  var url="<?php echo e(route('reception.update',':id')); ?>";
                   url=url.replace(':id',id);
                   $.ajax({
                 type:'post',
@@ -430,7 +429,7 @@
       
       var id=$(this).data('id');
       //console.log(id);
-       var url="{{route('reception.destroy',':id')}}";
+       var url="<?php echo e(route('reception.destroy',':id')); ?>";
       
        url=url.replace(':id',id);
        
@@ -456,4 +455,5 @@
 })
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontendTemplate', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/GP/resources/views/reception/create.blade.php ENDPATH**/ ?>

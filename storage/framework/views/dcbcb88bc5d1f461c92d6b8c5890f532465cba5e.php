@@ -26,6 +26,7 @@
   		      <div class="form-group">
   		        <label for="medicineType" class="sfont">Choose Medicine Type</label>
   	            <select class="form-control" name="type_id"  id="medicineType">
+                  <option value="">Choose Type</option>
   	              <?php $__currentLoopData = $medTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $medType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
   	              <option value="<?php echo e($medType->id); ?>"><?php echo e($medType->name); ?></option>
   	              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
