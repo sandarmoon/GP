@@ -37,7 +37,15 @@ Route::get('/getuser','ReceptionController@getuser')->name('getuser');
 //Owner
 Route::resource('owners','OwnerController');
 
+Route::get('/NotifiRoute/{path}/{filename}/{message}',function($path,$filename,$message){
 
+	$path="$path.$filename";
+
+	return view($path,compact('message'));
+})->name('NotifiRoute');
+
+
+Route::get('/getOwners','OwnerController@getOwners')->name('getOwners');
 
 
 //Doctor

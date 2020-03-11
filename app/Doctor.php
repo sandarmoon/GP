@@ -13,4 +13,7 @@ class Doctor extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+    public function owner(){
+        return $this->belongsTo('App\Owner');
+    }
 }

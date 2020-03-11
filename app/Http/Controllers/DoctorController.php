@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\DoctorResource;
 use DB;
 
+
 class DoctorController extends Controller
 {
     /**
@@ -18,6 +19,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
+        
         return view('doctor.index');
     }
 
