@@ -56,7 +56,7 @@
             </div>
            <div class="card-body">
               	<div class="table-responsive p-1">
-			       <table  class="table align-items-center table-white table-flush">
+			       <table  class="table align-items-center table-white table-flush table-flush example"  id="dataTable">
 			              <thead class="thead-light">
 			                <tr>
 			                  <th>No</th>

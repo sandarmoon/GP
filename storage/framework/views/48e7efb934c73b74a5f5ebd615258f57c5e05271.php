@@ -20,9 +20,7 @@
   <meta charset="utf-8" />
   <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>
-    Gpclinic
-  </title>
+  <title>GP clinic</title>
   <!-- Favicon -->
   <link href="<?php echo e(asset('template/assets/img/brand/favicon.png')); ?>" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -53,14 +51,13 @@
             margin-top: 0px;
             padding-top: 0px;
         }
+    }
 
-       
-
-
+    .sfont{
+      font-size: 0.875rem;
     }
   </style>
   <?php echo $__env->yieldContent('style'); ?>
-
 
 </head>
 
@@ -96,9 +93,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="<?php echo e(asset('template/assets/img/theme/team-1-800x800.jpg')); ?>
-
-">
+                <img alt="Image placeholder" src="<?php echo e(asset('template/assets/img/theme/team-1-800x800.jpg')); ?>">
               </span>
             </div>
           </a>
@@ -224,10 +219,10 @@
   </nav>
   <div class="main-content">
     <!-- Navbar -->
-    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+    <nav class="navbar navbar-top navbar-expand-lg navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html">Tables</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html"><i class="ni ni-bullet-list-67"></i> Version 2.1</a>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -284,7 +279,7 @@
     </nav>
     <!-- End Navbar -->
     <!-- Header -->
-    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="header bg-gradient-primary pb-8 pt-3 pt-md-7">
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->
@@ -293,15 +288,8 @@
       </div>
     </div>
     <div class="container-fluid mt--7">
-      <!-- Table -->
-      <div class="row">
-        <div class="col">
-          <div class="card shadow">
-            <?php echo $__env->yieldContent('content'); ?>
-          </div>
-        </div>
-      </div>
-      <!-- Dark table -->
+      
+      <?php echo $__env->yieldContent('content'); ?>
      
       <!-- Footer -->
       <footer class="footer">

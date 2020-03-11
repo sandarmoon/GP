@@ -9,7 +9,7 @@ class Reception extends Model
 {
     
 	use SoftDeletes;
-    protected $fillable=['gender','phoneno','education','address','user_id','file'];
+    protected $fillable=['user_id','owner_id','gender','phoneno','education','address','file'];
     
      public function user(){
     	return $this->belongsTo('App\User');

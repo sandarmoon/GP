@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Medicinetype;
 
-class MedicineTypeController extends Controller
+class OwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,16 +13,7 @@ class MedicineTypeController extends Controller
      */
     public function index()
     {
-        $medTypes=Medicinetype::simplePaginate(15);
-       //  return view('medicinetype.index1',compact('medTypes'));
-       return view('medicinetype.index',compact('medTypes'));;
-    }
-
-    public function getMedicineType()
-    {
-        $medTypes=Medicinetype::all();
-       
-        return $medTypes;
+        //
     }
 
     /**
@@ -33,7 +23,7 @@ class MedicineTypeController extends Controller
      */
     public function create()
     {
-         return view('medicinetype.create');
+        return view('owner.create');
     }
 
     /**
@@ -44,17 +34,7 @@ class MedicineTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-           
-            'name' => 'required',
-            
-        ]);
-
-        Medicinetype::create([
-            'name'=>request('name')
-        ]);
-       return response()->json(['success'=>'Data is successfully added!']);
-        //echo "made it";
+        //
     }
 
     /**
@@ -88,18 +68,7 @@ class MedicineTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-           
-            'name' => 'required',
-            
-        ]);
-        //dd($request);
-        $medType=Medicinetype::find($id);
-        //dd($medType);
-        $medType->name=request('name');
-        $medType->update();
-       // echo "made it";
-        return back();
+        //
     }
 
     /**
@@ -110,9 +79,6 @@ class MedicineTypeController extends Controller
      */
     public function destroy($id)
     {
-        
-        $medicinetype = Medicinetype::find($id); // Can chain this line with the next one
-        $medicinetype->delete($id);
-        return response()->json(['success'=>'Record is successfully updated!']);
+        //
     }
 }
