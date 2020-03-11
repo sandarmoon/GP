@@ -16,15 +16,15 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="tbody">
                 <?php $i=1;?>
-                @foreach($patients as $patient)
+                @foreach($treatments as $row)
                 <tr>
                     <td>{{$i++}}</td>
-                    <td>{{$patient->name}}</td>
-                    <td>{{$patient->fatherName}}</td>
-                    <td>{{$patient->age}}</td>
-                    <td><a href="{{route('appointpatienthistory',$patient->id)}}" data-id="$patient->id" class="btn btn-info pending">Pending</a></td>
+                    <td>{{$row->patient->name}}</td>
+                    <td>{{$row->patient->fatherName}}</td>
+                    <td>{{$row->patient->age}}</td>
+                    <td><a href="{{asset('appointpatienthistory/'.$row->id.'/'.$row->patient_id)}}" data-id="$row->id" data-patient_id="$row->patient_id" class="btn btn-info pending">Pending</a></td>
 
                 </tr>
                 @endforeach
@@ -40,6 +40,8 @@
 @section('script')
 <script type="text/javascript">
  
+ 
+
 </script>
 
 @endsection

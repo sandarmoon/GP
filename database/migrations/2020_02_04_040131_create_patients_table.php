@@ -28,7 +28,6 @@ class CreatePatientsTable extends Migration
             $table->string('allergy');
             $table->string('job');
             $table->text('file');
-            $table->boolean('status');
             $table->softDeletes();
             $table->timestamps();
         });

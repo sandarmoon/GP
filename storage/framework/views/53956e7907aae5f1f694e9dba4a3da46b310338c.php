@@ -15,15 +15,15 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="tbody">
                 <?php $i=1;?>
-                <?php $__currentLoopData = $patients; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $patient): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $treatments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
                     <td><?php echo e($i++); ?></td>
-                    <td><?php echo e($patient->name); ?></td>
-                    <td><?php echo e($patient->fatherName); ?></td>
-                    <td><?php echo e($patient->age); ?></td>
-                    <td><a href="<?php echo e(route('appointpatienthistory',$patient->id)); ?>" data-id="$patient->id" class="btn btn-info pending">Pending</a></td>
+                    <td><?php echo e($row->patient->name); ?></td>
+                    <td><?php echo e($row->patient->fatherName); ?></td>
+                    <td><?php echo e($row->patient->age); ?></td>
+                    <td><a href="<?php echo e(asset('appointpatienthistory/'.$row->id.'/'.$row->patient_id)); ?>" data-id="$row->id" data-patient_id="$row->patient_id" class="btn btn-info pending">Pending</a></td>
 
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -39,6 +39,8 @@
 <?php $__env->startSection('script'); ?>
 <script type="text/javascript">
  
+ 
+
 </script>
 
 <?php $__env->stopSection(); ?>

@@ -55,5 +55,5 @@ Route::post('/searchReport','ExpenseController@searchReport')->name('searchRepor
 
 Route::get('/appointpatient','AppointmentController@index')->name('appointpatient');
 
-Route::get('/appointpatienthistory/{id}','AppointmentController@patient')->name('appointpatienthistory');
+Route::get('/appointpatienthistory/{treatment_id}/{patient_id}','AppointmentController@patient')->name('appointpatienthistory');
 Route::post('/appmedicine','AppointmentController@getmedicine')->name('appmedicine');
