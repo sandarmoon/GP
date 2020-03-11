@@ -26,8 +26,12 @@ class CreateDoctorsTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
-             $table->softDeletes();
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

@@ -1021,7 +1021,7 @@ var OrdersChart = (function() {
       data: {
         labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-          label: 'Sales',
+          label: 'Sales helo',
           data: [25, 20, 30, 22, 17, 29]
         }]
       }
@@ -1099,7 +1099,7 @@ var SalesChart = (function() {
       data: {
         labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-          label: 'Performance',
+          label: 'Performance heo',
           data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
         }]
       }

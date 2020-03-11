@@ -33,7 +33,7 @@
                 </div>
               </div>
               <div class="text-center">
-            <form id="doctorResume" enctype="multipart/formData">
+                <form id="doctorResume" enctype="multipart/formData">
                   <div class="form-group">
                     <span class="Ename error "></span>
                     <div class="input-group input-group-alternative mb-3">
@@ -43,6 +43,7 @@
                       <input class="form-control" name="name" placeholder="Name" type="text">
                     </div>
                   </div>
+
                   <div class="form-group">
                     <span class="Eemail error "></span>
                     <div class="input-group input-group-alternative mb-3">
@@ -60,12 +61,10 @@
                           <img src="" width="30" height="30" class="d-none" id="profileholder">
                         </span>
                       </div>
-                      
-                        
-                      
                       <input class="form-control" name="avatar" placeholder="Profile" type="file">
                     </div>
                   </div>
+
                   <div class="form-group">
                     <span class="Epassword error "></span>
                     <div class="input-group input-group-alternative">
@@ -76,10 +75,10 @@
                     </div>
                   </div>
 
-                   <div class="text-center">
-                      <input type="submit" class="btn btn-primary mt-4" value="Create Account"/>
-                    </div>
-
+                  <div class="text-center">
+                    <input type="submit" class="btn btn-primary mt-4" value="Create Account"/>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -89,7 +88,7 @@
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Fill Resume</h3>
+                  <h3 class="mb-0">Fill Doctor Informations</h3>
                 </div>
                 <div class="col-4 text-right">
                   <!-- <a href="#!" class="btn btn-sm btn-primary">skip</a> -->
@@ -99,8 +98,6 @@
             <div class="card-body">
               
                 <h6 class="heading-small text-muted mb-4">General information</h6>
-                <div class="pl-lg-4">
-
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="form-group">
@@ -117,16 +114,14 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-dob">Date of Birth</label>
-                        <input type="text" id="input-dob" name="dob" class="form-control form-control-alternative" placeholder="">
+                        <input type="date" id="input-dob" name="dob" class="form-control form-control-alternative" placeholder="">
                       </div>
                     </div>
                   </div>
-                  
-                </div>
-                 <hr class="my-4" />
+
+                <hr class="my-4" />
                 <!-- Eduction -->
                 <h6 class="heading-small text-muted mb-4">Skill information</h6>
-                <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
@@ -139,28 +134,24 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-certificate">Certificate</label>
-                        <input type="file" id="input-certificate" multiple="multiple" name="certificate[]" class="form-control form-control-alternative" >
+                        <input type="file" id="input-certificate" name="certificate[]" multiple="multiple">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-license">License</label>
-                        <input type="file" id="input-license" name="license[]" class="form-control form-control-alternative" multiple="multiple">
+                        <input type="file" id="input-license" name="license[]" multiple="multiple">
                       </div>
                     </div>
-                    
                   </div>
-                </div>
 
                 <hr class="my-4" />
                 <!-- Experience -->
                 <h6 class="heading-small text-muted mb-4">Working Experience</h6>
-                <div class="pl-lg-4">
                   <div class="form-group">
                     <label> Experience</label>
                     <textarea rows="4" name="experience" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
                   </div>
-                </div>
 
 
 
@@ -168,7 +159,6 @@
                 <hr class="my-4" />
                 <!-- Address -->
                 <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                <div class="pl-lg-4">
                   
                   <div class="row">
                     <div class="col-lg-6">
@@ -184,12 +174,6 @@
                       </div>
                     </div>
                   </div>
-                </div>
-
-                <div class=" text-right">
-                  <!-- <input type="submit" value="Submit Now!" class="btn btn-sm btn-primary AddNew"/>or -->
-                  <a href="#!" class="">Skip</a>
-                </div>
                 
               </form>
             </div>

@@ -24,6 +24,7 @@ class AppointmentController extends Controller
         $drugs=Medicine::Where('medicinetype_id',1)->get();
         //dd($drugs);
         $injections=Medicine::where('medicinetype_id',2)->get();
+        // dd($injections);
         $treatments=Treatment::where('patient_id',request('id'))->get();
        /* $treatmentdrugs= $treatments->medicines()
                          ->wherePivot('type', '!=', Null)

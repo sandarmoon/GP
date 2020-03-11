@@ -51,7 +51,6 @@ class DoctorController extends Controller
         
         //dd($request);
         request()->validate([
-            
             'certificate.' => '|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'certificate.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name'=>'required',

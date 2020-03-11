@@ -23,6 +23,10 @@ class CreateReceptionsTable extends Migration
             $table->text('file');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

@@ -35,6 +35,10 @@ class CreateTreatmentsTable extends Migration
             $table->string('charges');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('patient_id')
+                  ->references('id')->on('patients')
+                  ->onDelete('cascade');
         });
     }
 
