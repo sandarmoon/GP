@@ -26,7 +26,7 @@ class CreateTreatmentsTable extends Migration
             $table->text('complaint');
             $table->text('examination')->nullable();
             $table->text('relevant_info')->nullable();
-            $table->string('chronic_disease');
+            $table->string('chronic_disease')->nullable();;
             $table->string('diagnosis');
             $table->text('external_medicine')->nullable();
             $table->date('next_visit_date')->nullable();
