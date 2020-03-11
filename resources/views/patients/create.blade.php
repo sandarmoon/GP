@@ -167,6 +167,20 @@
                 </span>
                 @enderror
               </div>
+              @php
+              $dlength=count($doctors);
+              @endphp
+              @if($dlength>1)
+              <div class="form-group my-3">
+                <label for="doctor">doctor</label><br>
+                <select name="doctor"  id="doctor" class="form-control">
+              @foreach($doctors as $row)
+                  <option value="{{$row->id}}">{{$row->user->name}}</option>
+              @endforeach
+                </select>
+                @endif
+                
+              </div>
             </div>
           </div>
           <input type="submit" class="btn btn-primary" value="submit">

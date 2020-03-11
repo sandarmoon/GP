@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Patient;
+use App\Doctor;
+use App\Treatment;
 
 class PatientController extends Controller
 {
@@ -23,7 +25,8 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('patients.create');
+        $doctors=Doctor::where('owner_id',1)->get();
+        return view('patients.create',compact('doctors'));
     }
 
     /**
@@ -62,7 +65,8 @@ class PatientController extends Controller
                $path[] = $upload_dir . $name;
             }
         }
-
+    $doctor_id=Doctor::first()->value('id');
+    //dd($doctor_id);
     //dd($path);
 
      $patient=new Patient;
@@ -79,8 +83,17 @@ class PatientController extends Controller
      $patient->allergy=request('allergy');
      $patient->job=request('job');
      $patient->file=json_encode($path);
-     $patient->status=0;
      $patient->save();
+
+     $treatment=new Treatment;
+     $treatment->patient_id=$patient->id;
+     if(request('dcotor')){
+        $treatment->doctor_id=request('doctor');
+     }else{
+        $treatment->doctor_id=$doctor_id;
+
+     }
+     $treatment->save();
      return redirect()->route('patient.index');
 
     }
