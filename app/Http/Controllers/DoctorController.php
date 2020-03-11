@@ -107,7 +107,6 @@ class DoctorController extends Controller
             // 'owner_id'=>Auth::user()->id,
             'owner_id'=>1,
             'user_id'=>$user->id,
-            'owner_id'=>1,
             'nrc'=>request('nrc'),
             'age'=>request('age'),
             'dob'=>request('dob'),
