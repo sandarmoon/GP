@@ -24,6 +24,7 @@ class CreateReceptionsTable extends Migration
             $table->text('file');
             $table->softDeletes();
             $table->timestamps();
+            
              $table->foreign('owner_id')
                 ->references('id')->on('owners')
                 ->onDelete('cascade');

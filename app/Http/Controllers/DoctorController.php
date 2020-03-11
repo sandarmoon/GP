@@ -104,6 +104,8 @@ class DoctorController extends Controller
             $user->assignRole('doctor');
         
         $doctor=Doctor::create([
+            // 'owner_id'=>Auth::user()->id,
+            'owner_id'=>1,
             'user_id'=>$user->id,
             'nrc'=>request('nrc'),
             'age'=>request('age'),
