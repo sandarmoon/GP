@@ -14,85 +14,156 @@ $patientid=$uriarray[2];
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show mx-3 active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-    <div class="row mx-4 my-3">
-      <div class="col-12">
-        <div class="accordion" id="accordionExample">
-          <div class="card bg-secondary shadow">
-            <div class="card-header" id="headingOne">
-              <h2 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Patient Info
-                </button>
-              </h2>
-            </div>
-
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-              <div class="card-body">
-
-                <div class="row">
-                  <div class="col-6">
-                    <p class="card-text"><strong>Patient ID:  </strong><?php echo e($patient->id); ?> </p>
-                    <p class="card-text"><strong>Age:  </strong> <?php echo e($patient->age); ?><?php 
-                    if($patient->child==0){
-                    echo "year";
-                    }else{
-                    echo"month";
-                    }
-                    ?></p>
-                    <p class="card-text"><strong>Gender: </strong><?php echo e($patient->gender); ?></p>
-                    <p class="card-text"><strong>Phone No: </strong><?php echo e($patient->phoneno); ?></p> 
-                  </div>
-                  <div class="col-6">
-                    <p class="card-text"><strong>Address: </strong><?php echo e($patient->address); ?></p>
-                    <p class="card-text"><strong>Body Weight: </strong><?php echo e($patient->body_weight); ?></p>
-                    <p class="card-text"><strong>Known Drug Allergy: </strong><?php echo e($patient->allergy); ?></p>
-                     <p class="card-text"><strong>Jobs: </strong><?php echo e($patient->job); ?></p>
-                  </div>
-
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                   <h3>patient file</h3>
-                        <?php $__currentLoopData = json_decode($patient->file); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                     <a target="_blank" href="<?php echo e(asset($photo)); ?>">
-                                <img src="<?php echo e(asset($photo)); ?>" width="100px" height="100px">
-                                </a>
-
-                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </div>
-                     
-                </div>     
-                
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>	
-    
     <div class="row mx-5 my-4">
+            <div class="col-12"> 
       
         <div class="accordion" id="accordionExample">
+              <div class="card bg-secondary shadow">
+                <div class="card-header" id="headingOne">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Patient Info
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-6">
+                        <p class="card-text"><strong>Patient ID:  </strong><?php echo e($patient->id); ?> </p>
+                        <p class="card-text"><strong>Age:  </strong> <?php echo e($patient->age); ?><?php 
+                        if($patient->child==0){
+                        echo "year";
+                        }else{
+                        echo"month";
+                        }
+                        ?></p>
+                        <p class="card-text"><strong>Gender: </strong><?php echo e($patient->gender); ?></p>
+                        <p class="card-text"><strong>Phone No: </strong><?php echo e($patient->phoneno); ?></p> 
+                      </div>
+                      <div class="col-6">
+                        <p class="card-text"><strong>Address: </strong><?php echo e($patient->address); ?></p>
+                        <p class="card-text"><strong>Body Weight: </strong><?php echo e($patient->body_weight); ?></p>
+                        <p class="card-text"><strong>Known Drug Allergy: </strong><?php echo e($patient->allergy); ?></p>
+                         <p class="card-text"><strong>Jobs: </strong><?php echo e($patient->job); ?></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <h3>patient file</h3>
+                        <?php $__currentLoopData = json_decode($patient->file); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <a target="_blank" href="<?php echo e(asset($photo)); ?>">
+                          <img src="<?php echo e(asset($photo)); ?>" width="100px" height="100px">
+                        </a>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                      </div>  
+                    </div>     
+                  </div>
+                </div>
+              </div>
+
+          <?php $i=1; ?>
           <?php $__currentLoopData = $treatments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $treatment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-          <div class="card">
+          <div class="card my-3">
             <div class="card-header" id="headingOne">
               <h2 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<?php echo e($i); ?>" aria-expanded="true" aria-controls="collapseOne">
                     <?php echo e($treatment->created_at); ?>
 
                 </button>
               </h2>
             </div>
 
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapse<?php echo e($i); ?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+               <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                  <p class="card-text"><strong>Complaint:  </strong><?php echo e($treatment->complaint); ?> </p>
+                  <p class="card-text"><strong>SPO2:</strong><?php echo e($treatment->spo2); ?> </p>
+                  <p class="card-text"><strong>PR:  </strong><?php echo e($treatment->pr); ?> </p>
+                  <p class="card-text"><strong>Temperature:</strong><?php echo e($treatment->temperature); ?> </p>
+                  <p class="card-text"><strong>Blood pressure:</strong><?php echo e($treatment->bp); ?> </p>
+                  <p class="card-text"><strong>RB2:</strong><?php echo e($treatment->rbs); ?> </p>
+                  <p class="card-text"><strong>Diagnosis:</strong><?php echo e($treatment->diagnosis); ?>}} </p>
+                  <p class="card-text"><strong>Body Weight:</strong><?php echo e($treatment->body_weight); ?>}} </p>
+                  <p class="card-text"><strong>Next Visit Date:</strong><?php echo e($treatment->next_visit_date); ?>}} </p>
+                  <p class="card-text"><strong>relevant_info:</strong><?php echo e($treatment->relevant_info); ?>}} </p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                  <div class="row my-5">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <h3 class="">Treatment and Drug</h3>
+                        <table class="table text-center table-bordered table-dark">
+                          <thead class="">
+                            <th>drug name</th>
+                            <th>tab</th>
+                            <th>Interval</th>
+                            <th>Meal</th>
+                            <th>Duration</th>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $alltreaments=$treatment->medicines;
+
+                            
+                            ?>
+                            <!-- <?php echo e($alltreaments); ?> -->
+                            <?php $__currentLoopData = $alltreaments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $alldrugs): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if($alldrugs->pivot->type==null): ?>
+                            <tr>
+                              <td><?php echo e($alldrugs->name); ?></td>
+                              <td><?php echo e($alldrugs->pivot->tab); ?></td>
+                              <td><?php echo e($alldrugs->pivot->interval); ?></td>
+                              <td><?php echo e($alldrugs->pivot->meal); ?></td>
+                              <td><?php echo e($alldrugs->pivot->during); ?></td>
+                            </tr>
+                            <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row my-2">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <h3 class="">Injection/Prodecure</h3>
+                        <table class="table text-center table-bordered table-dark w-50">
+                          <thead class="">
+                            <th>injection</th>
+                            <th>injection type</th>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $alltreaments=$treatment->medicines;
+                            ?>
+                            <!-- <?php echo e($alltreaments); ?> -->
+                            <?php $__currentLoopData = $alltreaments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $allinjections): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if($allinjections->pivot->type): ?>
+                            <tr>
+                              <td><?php echo e($allinjections->name); ?></td>
+                              <td><?php echo e($allinjections->pivot->type); ?></td>
+                            </tr>
+                            <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                
               </div>
             </div>
           </div>
+          <?php $i++; ?>
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
+            </div>
+
       
     </div>
   
@@ -122,6 +193,7 @@ $patientid=$uriarray[2];
                   <div class="form-group">
                     <label>GC Level</label>
                     <input type="text" name="gc" class="form-control">
+                    <span class="Egc error d-block" ></span>
                   </div>
 
                   <div class="form-group">
@@ -157,6 +229,7 @@ $patientid=$uriarray[2];
                   <div class="form-group">
                     <label>Complaint and History</label>
                     <textarea class="form-control" name="complaint"></textarea>
+                    <span class="Ecomplaint error d-block" ></span>
                   </div>
 
                   <div class="form-group">
@@ -178,6 +251,7 @@ $patientid=$uriarray[2];
                   <div class="form-group">
                     <label>Diagnosis</label>
                     <input type="text" name="diagnosis" class="form-control">
+                    <span class="Edia error d-block" ></span>
                   </div>
 
                   <div class="form-group">
@@ -214,7 +288,7 @@ $patientid=$uriarray[2];
                                   <div class="col-md-6 col-sm-3 pr-0">
                                     <div class="form-group">
                                       <select name="time" id="time" class="form-control form-control-sm">
-                                        <option value="">Select Interval:</option>
+                                        <option value="">Select interval:</option>
                                         <option>od</option>
                                         <option>bd</option>
                                         <option>tds</option>
@@ -330,6 +404,7 @@ $patientid=$uriarray[2];
                   <div class="form-group">
                     <label>Charges</label>
                     <input type="number" name="charges" class="form-control">
+                    <span class="Echarge error d-block" ></span>
                   </div>
 
                   <div class="form-group">
@@ -383,9 +458,9 @@ $patientid=$uriarray[2];
       // alert('one');
      var drug= $(".drugselect :selected").text();
      var drugid= $(".drugselect :selected").val();
-     var bf=$("#bf :selected").text();
+     var bf=$("#bf").val();
      var tab=$("#tab").val();
-     var time=$("#time :selected").text();
+     var time=$("#time").val();
      var duration=$("#duration").val();
 
       // if (tab!=="" && duration !=="") {
@@ -570,7 +645,9 @@ $patientid=$uriarray[2];
       var myinjectionlist=JSON.parse(injectionlist);
 
       formData.append('drugs', JSON.stringify(myitemlist.itemlist));
+      if(myinjectionlist){
       formData.append('injections', JSON.stringify(myinjectionlist.itemlist));
+      }
 
     /* $.post("<?php echo e(route('treatment.store')); ?>",{formData:formData,myitemlist:myitemlist,myinjectionlist:myinjectionlist},function(response){
 
@@ -583,6 +660,29 @@ $patientid=$uriarray[2];
                 contentType: false,
                 processData: false,
                 success: (data) => {
+                  if(data.success){
+                    alert("treatmentsuccessfully")
+                   localStorage.clear();
+                    window.location.href = "/appointpatient";
+                  }
+                          
+                },
+                error: function(error){
+                  var message=error.responseJSON.message;
+                   var errors=error.responseJSON.errors;
+                  //console.log(error.responseJSON.errors);
+                  if(errors){
+                      var gc=errors.gc;
+                        //var email=errors.email;
+                        var complaint=errors.complaint;
+                        var diagnosis=errors.diagnosis;
+                        var charges=errors.charges;
+                         $('span.error').addClass('text-danger');
+                        $('.Egc').text(gc);
+                         $('.Ecomplaint').text(complaint);
+                         $('.Edia').text(diagnosis);
+                         $('.Echarge').text(charges);
+                  }
                 }
           })
 

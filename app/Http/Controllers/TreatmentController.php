@@ -85,18 +85,25 @@ class TreatmentController extends Controller
             $time=$drug->time;
             $bf=$drug->bf;
             $duration=$drug->duration;
-        $treatment->medicines()->attach(1,['tab' => $tab, 'interval' => $time,'meal'=>$bf,'during'=>$duration]);     
+        $treatment->medicines()->attach($drug->drugid,['tab' => $tab, 'interval' => $time,'meal'=>$bf,'during'=>$duration]);     
         }
-        $injections=json_decode(request('injections'));
         //dd(($drugs));
+        if(request('injections')){
+
+        $injections=json_decode(request('injections'));
+
         foreach ($injections as $key => $injection) {
            $type=$injection->injectiontype;
-        $treatment->medicines()->attach(1,['type' => $type]);     
+        $treatment->medicines()->attach($injection->injectionid,['type' => $type]);     
         }
+        }
+
         $patient = Patient::find(request('patientid'));
         //dd($patient);
         $patient->status=1;
         $patient->save();
+
+         return response()->json(['success'=>'Record is successfully']);
     }
 
     /**
