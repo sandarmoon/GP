@@ -1,5 +1,4 @@
-@extends('frontendTemplate')
-@section('content')
+<?php $__env->startSection('content'); ?>
   <div class="row">
     <div class="col-12">
       <div class="alert alert-primary success d-none" role="alert"></div>
@@ -70,29 +69,29 @@
             </thead>
             <tbody id="medicineTable">
               <?php $i=1;?>
-              @foreach($medTypes as $medType)
+              <?php $__currentLoopData = $medTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $medType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
-                  <td>{{$i++}}</td>
-                  <td>{{$medType->name}}</td>
+                  <td><?php echo e($i++); ?></td>
+                  <td><?php echo e($medType->name); ?></td>
                   <td>
-                    <button class="btn btn-primary btn-sm d-inline-block btnEdit " data-id="{{$medType->id}}" data-name="{{$medType->name}}">Edit</button>
-                     <form onsubmit="return confirm('are you sure to delete?')" action="{{route('medicineType.destroy',$medType->id)}}" method="post">
-                      @csrf
-                      @method('DELETE')
+                    <button class="btn btn-primary btn-sm d-inline-block btnEdit " data-id="<?php echo e($medType->id); ?>" data-name="<?php echo e($medType->name); ?>">Edit</button>
+                     <form onsubmit="return confirm('are you sure to delete?')" action="<?php echo e(route('medicineType.destroy',$medType->id)); ?>" method="post">
+                      <?php echo csrf_field(); ?>
+                      <?php echo method_field('DELETE'); ?>
                        <input type="submit" class="btn btn-danger btn-sm " value="delete">
                      </form>
                   </td>
 
               </tr>
-              @endforeach
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
 <script type="text/javascript">
   $('document').ready(function(){
 
@@ -112,7 +111,7 @@
 
       $('.ename').val(name);
       $('.eid').val(id);    
-      var url="{{route('medicineType.update',':id')}}";
+      var url="<?php echo e(route('medicineType.update',':id')); ?>";
       url=url.replace(':id',id);
 
       $('#med_update').attr('action',url);
@@ -150,4 +149,6 @@
   })
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontendTemplate', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/GP/resources/views/medicinetype/index.blade.php ENDPATH**/ ?>

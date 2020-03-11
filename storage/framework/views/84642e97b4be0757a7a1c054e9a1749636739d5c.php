@@ -1,5 +1,4 @@
-@extends('frontendTemplate')
-@section('content')
+<?php $__env->startSection('content'); ?>
 	
     <!-- Page content -->
     <div class="container-fluid mt-3">
@@ -11,7 +10,7 @@
 
                 <div class="card-profile-image " id="profileImg">
                   <a href="#">
-                    <img src="{{asset('storages/img/team-4-800x800.jpg')}}" class="rounded-circle">
+                    <img src="<?php echo e(asset('storages/img/team-4-800x800.jpg')); ?>" class="rounded-circle">
                   </a>
                   <div class="Text "><a href="#" >Change Profile</a></div>
                 </div>
@@ -185,8 +184,8 @@
      
       
     </div>
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
 <script type="text/javascript">
 	$('document').ready(function(){
 		 $.ajaxSetup({
@@ -202,7 +201,7 @@
 		$('#doctorResume').submit(function(e){
 			e.preventDefault();
 			var formData= new FormData(this);
-			var url="{{route('doctor.store')}}";
+			var url="<?php echo e(route('doctor.store')); ?>";
 			$.ajax({
                 type:'POST',
                 url: url,
@@ -212,7 +211,7 @@
                 processData: false,
                 success: (data) => {
                     this.reset();
-                    window.location.href="{{route('doctor.index')}}"
+                    window.location.href="<?php echo e(route('doctor.index')); ?>"
                 },
                 error: function(error){
                    var errors=error.responseJSON.errors;
@@ -240,4 +239,5 @@
     })
 	})
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontendTemplate', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/GP/resources/views/doctor/create.blade.php ENDPATH**/ ?>

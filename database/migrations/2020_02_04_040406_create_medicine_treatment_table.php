@@ -24,6 +24,14 @@ class CreateMedicineTreatmentTable extends Migration
             $table->string('type')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('treatment_id')
+                  ->references('id')->on('treatments')
+                  ->onDelete('cascade');
+
+            $table->foreign('medicine_id')
+                  ->references('id')->on('medicines')
+                  ->onDelete('cascade');
         });
     }
 

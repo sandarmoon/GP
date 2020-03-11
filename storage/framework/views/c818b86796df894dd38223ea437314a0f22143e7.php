@@ -1,5 +1,4 @@
-@extends('frontendTemplate')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="row">
     <div class="col-12">
 
@@ -30,9 +29,9 @@
 
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script')
+<?php $__env->startSection('script'); ?>
 <script type="text/javascript">
   $('document').ready(function(){
     getData();
@@ -44,7 +43,7 @@
 
         function getData(){
           console.log('you make it');
-          $.get("{{route('getDoctor')}}",function(response){
+          $.get("<?php echo e(route('getDoctor')); ?>",function(response){
             var j=1;
             var html='';
             $.each(response.data,function(i,v){
@@ -74,7 +73,7 @@
 
         $('#doctorTable').on('click','.btnEdit',function(){
           var id=$(this).data('id');
-          var url="{{route('doctor.edit',':id')}}";
+          var url="<?php echo e(route('doctor.edit',':id')); ?>";
       
           url=url.replace(':id',id);
           $(this).attr('href',url);
@@ -83,7 +82,7 @@
         $('#doctorTable').on('click','.btnDelete',function(){
 
           var id=$(this).data('id');
-          var url="{{route('doctor.destroy',':id')}}";
+          var url="<?php echo e(route('doctor.destroy',':id')); ?>";
       
            url=url.replace(':id',id);
            
@@ -110,7 +109,7 @@
         $('#doctorTable').on('click','.btnDetail',function(){
              var id=$(this).data('id');
              console.log(id);;
-            var url="{{route('doctor.show',':id')}}";
+            var url="<?php echo e(route('doctor.show',':id')); ?>";
         
              url=url.replace(':id',id);
             
@@ -124,4 +123,6 @@
  
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontendTemplate', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/GP/resources/views/doctor/index.blade.php ENDPATH**/ ?>
