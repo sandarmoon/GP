@@ -34,14 +34,25 @@ Route::get('/getMedicine','MedicineController@getMedicine')->name('getMedicine')
 
 Route::get('/getuser','ReceptionController@getuser')->name('getuser');
 
+//Owner
+Route::resource('owners','OwnerController');
+
+
+
+
 //Doctor
 Route::resource('doctor','DoctorController');
 
 Route::get('/getDoctor','DoctorController@getDoctor')->name('getDoctor');
 
+
+//Patient
 Route::resource('patient','PatientController');
 
 Route::resource('reception','ReceptionController');
+
+
+
 
 Auth::routes();
 

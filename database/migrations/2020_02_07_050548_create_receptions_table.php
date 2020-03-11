@@ -15,18 +15,24 @@ class CreateReceptionsTable extends Migration
     {
         Schema::create('receptions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('owner_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('gender');
             $table->string('phoneno');
             $table->string('education');
             $table->text('address');
-            $table->unsignedBigInteger('user_id');
             $table->text('file');
             $table->softDeletes();
             $table->timestamps();
+            
+             $table->foreign('owner_id')
+                ->references('id')->on('owners')
+                ->onDelete('cascade');
 
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
+           
         });
     }
 

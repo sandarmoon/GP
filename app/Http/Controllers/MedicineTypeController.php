@@ -14,9 +14,9 @@ class MedicineTypeController extends Controller
      */
     public function index()
     {
-        $medTypes=Medicinetype::all();
-         return view('medicinetype.index1',compact('medTypes'));
-       // return $medTypes;
+        $medTypes=Medicinetype::simplePaginate(15);
+       //  return view('medicinetype.index1',compact('medTypes'));
+       return view('medicinetype.index',compact('medTypes'));;
     }
 
     public function getMedicineType()
@@ -110,7 +110,9 @@ class MedicineTypeController extends Controller
      */
     public function destroy($id)
     {
-        Medicinetype::destroy($id);
-        return back();
+        
+        $medicinetype = Medicinetype::find($id); // Can chain this line with the next one
+        $medicinetype->delete($id);
+        return response()->json(['success'=>'Record is successfully updated!']);
     }
 }

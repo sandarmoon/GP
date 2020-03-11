@@ -34,7 +34,7 @@
 			      <input type="hidden" name="" class="medTypeid">
 			     
 			      <div class="form-group">
-			        <button type="button" class="btn btn-primary btn-md  float-right update">Update</button>
+			        <button type="submit" class="btn btn-primary btn-md  float-right update">Update</button>
 			        
 			      </div>
 			</form>
@@ -56,7 +56,7 @@
             </div>
            <div class="card-body">
               	<div class="table-responsive p-1">
-			       <table  class="table align-items-center table-white table-flush">
+			       <table  class="table align-items-center table-white table-flush table-flush example"  id="dataTable">
 			              <thead class="thead-light">
 			                <tr>
 			                  <th>No</th>
@@ -173,20 +173,24 @@
 	    
 	    })
 
-	     $('.update').click(function(){
-	    	var id=$('.medidType').val();
-	    	var obj=$('#EditMedicineType').serialize();
-	    	var url="<?php echo e(route('medicineType.update',':id')); ?>";
+	   
+
+	    $('#EditMedicineType').submit(function(e){
+	      e.preventDefault();
+	      	var id=$('.medTypeid').val();
+	      var formdata= new FormData(this);
+	       	var url="<?php echo e(route('medicineType.update',':id')); ?>";
 	    	url=url.replace(':id',id);
-	    	$.ajax({
-	    		url:url,
-	    		type:'PATCH',
-	    		data:obj,
-	    		dataType:'json',
-	    		success:function(res){
-	    			// console.log('heloo world');
-	    			if(res.success){
-	    				$('.success').removeClass('d-none');
+	      formdata.append('_method', 'PUT');
+	          $.ajax({
+	                type:'POST',
+	                url: url,
+	                data: formdata,
+	                cache:false,
+	                contentType: false,
+	                processData: false,
+	                success: (data) => {
+	                  $('.success').removeClass('d-none');
 			              $('.success').show();
 			              $('.success').text('successfully updated');
 			              $('.success').fadeOut(3000);
@@ -196,25 +200,52 @@
 					      $('#EditMedicineType').hide();
 	    					$('#AddMedicineType').show();
 	    				getMedicineType();
-	    			}
-	    			
-	    			
-	    		},
-	    		error:function(error){
-	    			var message=error.responseJSON.message;
-		            var errors=error.responseJSON.errors;
-		            console.log(error.responseJSON.errors);
-		            if(errors){
-		             
-		              var name=errors.name;
-		              $('.UEname').text(name);
-		              $('span.error').addClass('text-danger');
-		              
-		            }
-	    		}
-	    	})
-	    	
-	    	
+	                        
+	                },
+	                error: function(error){
+		                  var message=error.responseJSON.message;
+			            var errors=error.responseJSON.errors;
+			            console.log(error.responseJSON.errors);
+			            if(errors){
+			             
+			              var name=errors.name;
+			              $('.UEname').text(name);
+			              $('span.error').addClass('text-danger');
+							}
+	                }
+	            });
+
+	          
+	    })
+
+
+	    //delete process
+	     $('#medicineType').on('click','.btnDelete',function(){
+	      //alert('i am delete');
+	      var id=$(this).data('id');
+	      console.log(id);
+	       var url="<?php echo e(route('medicineType.destroy',':id')); ?>";
+	      
+	       url=url.replace(':id',id);
+
+	           $.ajax({
+	              url:url,
+	              type:"post",
+	              data:{"_method": 'DELETE'},
+	              dataType:'json',
+	              success:function(res){
+	                if(res.success){
+	                $('.success').removeClass('d-none');
+	                $('.success').addClass('text-danger');
+	                    $('.success').show();
+	                    $('.success').text('successfully Deleted');
+	                    $('.success').fadeOut(3000);
+	                   getMedicineType();
+
+	                }},
+	                
+
+	            });
 	    })
 
 

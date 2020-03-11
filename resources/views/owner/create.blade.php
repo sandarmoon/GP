@@ -1,4 +1,5 @@
-<?php $__env->startSection('content'); ?>
+@extends('frontendTemplate')
+@section('content')
 	
     <!-- Page content -->
     <div class="container-fluid mt-3">
@@ -10,7 +11,7 @@
 
                 <div class="card-profile-image " id="profileImg">
                   <a href="#">
-                    <img src="<?php echo e(asset('storages/img/team-4-800x800.jpg')); ?>" class="rounded-circle">
+                    <img src="{{asset('storages/img/team-4-800x800.jpg')}}" class="rounded-circle">
                   </a>
                   <div class="Text "><a href="#" >Change Profile</a></div>
                 </div>
@@ -32,7 +33,7 @@
                 </div>
               </div>
               <div class="text-center">
-                <form id="doctorResume" enctype="multipart/formData">
+                <form id="OwnerResume" enctype="multipart/formData">
                   <div class="form-group">
                     <span class="Ename error "></span>
                     <div class="input-group input-group-alternative mb-3">
@@ -87,7 +88,7 @@
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Fill Doctor Informations</h3>
+                  <h3 class="mb-0">Fill Owner Informations</h3>
                 </div>
                 <div class="col-4 text-right">
                   <!-- <a href="#!" class="btn btn-sm btn-primary">skip</a> -->
@@ -118,61 +119,61 @@
                     </div>
                   </div>
 
-                <hr class="my-4" />
-                <!-- Eduction -->
-                <h6 class="heading-small text-muted mb-4">Skill information</h6>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-degree">Degree</label>
-                        <input id="input-degree" class="form-control form-control-alternative" name="degree" type="text">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-certificate">Certificate</label>
-                        <input type="file" id="input-certificate" name="certificate[]" multiple="multiple">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-license">License</label>
-                        <input type="file" id="input-license" name="license[]" multiple="multiple">
-                      </div>
-                    </div>
-                  </div>
-
-                <hr class="my-4" />
-                <!-- Experience -->
-                <h6 class="heading-small text-muted mb-4">Working Experience</h6>
-                  <div class="form-group">
-                    <label> Experience</label>
-                    <textarea rows="4" name="experience" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
-                  </div>
+            
 
 
 
 
                 <hr class="my-4" />
                 <!-- Address -->
-                <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                <h6 class="heading-small text-muted mb-4">Clinic information</h6>
+
+                  <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-clinic_name">Name</label>
+                          <input type="text" id="input-clinic_name" name="clinic_name" class="form-control form-control-alternative" placeholder="" >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-clinic_logo">Logo</label>
+                          <input type="file" id="input-clinic_logo" name="clinic_logo" class="form-control form-control-alternative" placeholder="" >
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-clinic_time">Time of Clinic</label>
+                          <input type="text" id="input-clinic_time" name="clinic_time" class="form-control form-control-alternative" placeholder="" >
+                        </div>
+                      </div>
+                  </div>
+
                   
                   <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-address">Address</label>
-                        <input type="text" id="input-address" name="address" class="form-control form-control-alternative" placeholder="" >
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-phone">Phone</label>
+                          <input type="text" id="input-phone" name="phone" class="form-control form-control-alternative" placeholder="" >
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-lg-6">
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-12">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-phone">Phone</label>
-                        <input type="text" id="input-phone" name="phone" class="form-control form-control-alternative" placeholder="" >
+                        <label class="form-control-label"  for="input-address">Address</label>
+                        <textarea rows="4" name="address" id="input-address" class="form-control form-control-alternative">
+                          
+                        </textarea>
+                        
                       </div>
                     </div>
                   </div>
+                  
                 
               </form>
             </div>
@@ -184,25 +185,25 @@
      
       
     </div>
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('script'); ?>
+@endsection
+@section('script')
 <script type="text/javascript">
-	$('document').ready(function(){
-		 $.ajaxSetup({
-		        headers: {
-		            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		        }
-		    });
+  $(document).ready(function(){
+       $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
 
 
-		
+    
 
-		$('#doctorResume').submit(function(e){
-			e.preventDefault();
-			var formData= new FormData(this);
-			var url="<?php echo e(route('doctor.store')); ?>";
-			$.ajax({
+    $('#OwnerResume').submit(function(e){
+      e.preventDefault();
+      var formData= new FormData(this);
+      var url="{{route('owners.store')}}";
+      $.ajax({
                 type:'POST',
                 url: url,
                 data: formData,
@@ -210,21 +211,22 @@
                 contentType: false,
                 processData: false,
                 success: (data) => {
-                    this.reset();
-                    window.location.href="<?php echo e(route('doctor.index')); ?>"
+                    // this.reset();
+                    console.log(this.data);
+                    
                 },
                 error: function(error){
                    var errors=error.responseJSON.errors;
                    if(errors){
                    
-                    $('.Ename').text(errors.name);
-                    $('.Epassword').text(errors.password);
-                     $('.Eemail').text(errors.email);
-                    $('span.error').addClass('text-danger');
+                    // $('.Ename').text(errors.name);
+                    // $('.Epassword').text(errors.password);
+                    //  $('.Eemail').text(errors.email);
+                    // $('span.error').addClass('text-danger');
                    }
                 }
             });
-		})
+    })
 
     $('input[name="avatar"]').change(function(){
       //alert('hello');
@@ -237,7 +239,6 @@
       }
       reader.readAsDataURL(this.files[0]); 
     })
-	})
+  })
 </script>
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('frontendTemplate', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/teach_prj/clinic/resources/views/doctor/create.blade.php ENDPATH**/ ?>
+@endsection

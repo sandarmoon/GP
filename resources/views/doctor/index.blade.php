@@ -47,7 +47,7 @@
           $.get("{{route('getDoctor')}}",function(response){
             var j=1;
             var html='';
-            $.each(response.data,function(i,v){
+            $.each(response,function(i,v){
               console.log(v);
                     html+=`<tr>
                               <td>${j++}</td>

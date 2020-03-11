@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDoctorsTable extends Migration
+class CreateOwnersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,33 +13,25 @@ class CreateDoctorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('doctors', function (Blueprint $table) {
+        Schema::create('owners', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('user_id');
-            
             $table->string('nrc')->nullable();
             $table->string('age')->nullable();
             $table->string('dob')->nullable();
-            $table->string('degree')->nullable();
-            $table->string('certificate')->nullable();
-            $table->string('license')->nullable();
-            $table->string('experience')->nullable();
             $table->string('avatar')->nullable();
+            $table->string('clinic_name')->nullable();
+            $table->string('clinic_logo')->nullable();
+            $table->string('clinic_time')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
-            $table->softDeletes();
             $table->timestamps();
-            $table->foreign('owner_id')
-                ->references('id')->on('owners')
-                ->onDelete('cascade');
 
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-
-            
-        });
+                $table->foreign('user_id')
+                    ->references('id')->on('users')
+                    ->onDelete('cascade');
+            });
+        
     }
 
     /**
@@ -49,6 +41,6 @@ class CreateDoctorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doctors');
+        Schema::dropIfExists('owners');
     }
 }
