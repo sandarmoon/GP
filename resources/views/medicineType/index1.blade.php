@@ -100,6 +100,22 @@
 	    });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		//go to medicineType.index
 		function getMedicineType(){
 			$.get('/getMedicineType',function(response){
@@ -120,6 +136,8 @@
 				$('#medicineType').html(html);
 			})
 		}
+
+
 
 		//creat data 
 	$('.addNew').click(function(){
@@ -223,30 +241,32 @@
 	    //delete process
 	     $('#medicineType').on('click','.btnDelete',function(){
 	      //alert('i am delete');
-	      var id=$(this).data('id');
-	      console.log(id);
-	       var url="{{route('medicineType.destroy',':id')}}";
-	      
-	       url=url.replace(':id',id);
+	     		if(confirm('Are you sure to delete?')){
+	     			 var id=$(this).data('id');
+					      console.log(id);
+					       var url="{{route('medicineType.destroy',':id')}}";
+					      
+					       url=url.replace(':id',id);
 
-	           $.ajax({
-	              url:url,
-	              type:"post",
-	              data:{"_method": 'DELETE'},
-	              dataType:'json',
-	              success:function(res){
-	                if(res.success){
-	                $('.success').removeClass('d-none');
-	                $('.success').addClass('text-danger');
-	                    $('.success').show();
-	                    $('.success').text('successfully Deleted');
-	                    $('.success').fadeOut(3000);
-	                   getMedicineType();
+					           $.ajax({
+					              url:url,
+					              type:"post",
+					              data:{"_method": 'DELETE'},
+					              dataType:'json',
+					              success:function(res){
+					                if(res.success){
+					                $('.success').removeClass('d-none');
+					                $('.success').addClass('text-danger');
+					                    $('.success').show();
+					                    $('.success').text('successfully Deleted');
+					                    $('.success').fadeOut(3000);
+					                   getMedicineType();
 
-	                }},
-	                
+					                }},
+					                
 
-	            });
+					            });
+	     		}
 	    })
 
 

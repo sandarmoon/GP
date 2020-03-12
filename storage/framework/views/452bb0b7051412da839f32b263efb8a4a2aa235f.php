@@ -1,40 +1,37 @@
 <?php $__env->startSection('content'); ?>
 	
-<div class="container">
-   
-     <div class="card-header border-0">
-      <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
-        Create new user
-      </button>
-      <h3 class="mb-0">User tables</h3>
-      <div class="alert alert-primary success d-none my-3" role="alert">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+            Add Reception
+          </button>
+          <h3 class="mb-0">Receptions</h3>
+          <div class="alert alert-primary success d-none my-3" role="alert"></div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive" >
+            <table class="table table-bordered align-items-center table-white table-flush example" id="dataTable" width="100%" cellspacing="0">
+                <thead class="thead-light">
+                  <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Adress</th>
+                    <th>phone</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="usertable">
+                </tbody>
+            </table>
+          </div>    
+        </div>             
       </div>
     </div>
-    <div class="table-responsive" >
-        <table class="table table-bordered align-items-center table-white table-flush example" id="dataTable" width="100%" cellspacing="0">
-              <thead class="thead-light">
-                <tr>
-                  <th>No</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Adress</th>
-                  <th>phone</th>
-                  
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="usertable">
-                
-                
-                
-              </tbody>
-            </table>
-    </div>
-                          
-</div>
-
-                  
-              
+  </div>
+           
 <?php $__env->stopSection(); ?>
 
 
@@ -292,14 +289,14 @@
             function getData(){
       $.get("<?php echo e(route('getuser')); ?>",function(response){
           //  console.log(response)
-            var j=1;
+            var l=1;
             var html='';
-                  $.each(response,function(i,v){
+                  
                    // console.log(v);
-                       $.each(v,function(j,k){
+                       $.each(response,function(j,k){
                         //console.log(k);
                         html+=`<tr>
-                                      <td>${j++}</td>
+                                      <td>${l++}</td>
                                       <td>${k.user.name}</td>
                                       <td>${k.user.email}</td>
                                       <td>${k.reception.address}</td>
@@ -319,7 +316,7 @@
 
                        
             
-      })
+    
     }
 
 
@@ -429,31 +426,32 @@
 
 
       $('tbody').on('click','.btnDelete',function(){
-      
-      var id=$(this).data('id');
-      //console.log(id);
-       var url="<?php echo e(route('reception.destroy',':id')); ?>";
-      
-       url=url.replace(':id',id);
-       
-       $.ajax({
-          url:url,
-          type:"post",
-          data:{"_method": 'DELETE'},
-          dataType:'json',
-          success:function(res){
-            if(res.success){
-            $('.success').removeClass('d-none');
-            $('.success').addClass('text-danger');
-                $('.success').show();
-                $('.success').text('successfully Deleted');
-                $('.success').fadeOut(3000);
-                getData();
+          if(confirm('Are you sure to delete?')){
+              var id=$(this).data('id');
+              //console.log(id);
+               var url="<?php echo e(route('reception.destroy',':id')); ?>";
+              
+               url=url.replace(':id',id);
+               
+               $.ajax({
+                  url:url,
+                  type:"post",
+                  data:{"_method": 'DELETE'},
+                  dataType:'json',
+                  success:function(res){
+                    if(res.success){
+                    $('.success').removeClass('d-none');
+                    $('.success').addClass('text-danger');
+                        $('.success').show();
+                        $('.success').text('successfully Deleted');
+                        $('.success').fadeOut(3000);
+                        getData();
 
-            }},
-            
+                    }},
+                    
 
-        });
+                });
+          }
      });
 })
 </script>

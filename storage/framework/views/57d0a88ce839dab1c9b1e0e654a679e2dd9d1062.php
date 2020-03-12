@@ -62,28 +62,13 @@
           <table class="table align-items-center table-white table-flush" id="dataTable">
             <thead class="thead-light">
               <tr>
-                <th>No</th>
+                <th>medicine ID</th>
                 <th>Name</th>
-                <th>Actions</th>
+               
               </tr>
             </thead>
-            <tbody id="medicineTable">
-              <?php $i=1;?>
-              <?php $__currentLoopData = $medTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $medType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-              <tr>
-                  <td><?php echo e($i++); ?></td>
-                  <td><?php echo e($medType->name); ?></td>
-                  <td>
-                    <button class="btn btn-primary btn-sm d-inline-block btnEdit " data-id="<?php echo e($medType->id); ?>" data-name="<?php echo e($medType->name); ?>">Edit</button>
-                     <form onsubmit="return confirm('are you sure to delete?')" action="<?php echo e(route('medicineType.destroy',$medType->id)); ?>" method="post">
-                      <?php echo csrf_field(); ?>
-                      <?php echo method_field('DELETE'); ?>
-                       <input type="submit" class="btn btn-danger btn-sm " value="delete">
-                     </form>
-                  </td>
-
-              </tr>
-              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <tbody>
+             
             </tbody>
           </table>
         </div>
@@ -100,6 +85,55 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    //datatable js start here
+
+    $.get('/getMedicineType',function(response){
+        // console.log(response);
+        loadData(response);
+        
+      })
+      
+    function loadData(data){
+      console.log(data);
+      
+       $(".dataTables").dataTable().fnDestroy();    
+         var oTable = $('#dataTables').dataTable({
+             "aaData" : data.data,
+             "processing": true,
+            "bPaginate": false,
+            "bFilter": false,
+            "bSort": false,
+            "bInfo": false,
+            "aoColumnDefs": [{
+            "sTitle": "medicine ID",
+            "aTargets": [0]
+        }, {
+            "sTitle": "Name",
+            "aTargets": [1]
+        }],
+            "aoColumns": [{
+            "mData": "id"
+        }, {
+            "mData": "name"
+        }]
+            });
+    }
+
+
+
+
+
+
+
+
+
+    //end here
+
+
+
+
+
 
     $('#EditMedicineType').hide();
 

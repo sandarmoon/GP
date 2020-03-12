@@ -31,7 +31,7 @@
                         
                         <a href="{{route('patient.show',$patient->id)}}" > <i class="btn fas fa-info text-white" style="background-color: #825ee4"></i></a>
 
-                          <form method="post" action="{{route('patient.destroy',$patient->id)}}" class="d-inline-block">
+                          <form method="post" onsubmit="return confirm('Are you sure to delete?');" action="{{route('patient.destroy',$patient->id)}}" class="d-inline-block">
 
                             @csrf
                             @method('DELETE')

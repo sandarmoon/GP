@@ -327,30 +327,32 @@
 
     $('#medicineTable').on('click','.btnDelete',function(){
     	
-    	var id=$(this).data('id');
-    	console.log(id);
-    	 var url="{{route('medicine.destroy',':id')}}";
-    	
-    	 url=url.replace(':id',id);
-    	 
-    	 $.ajax({
-          url:url,
-          type:"post",
-          data:{"_method": 'DELETE'},
-          dataType:'json',
-          success:function(res){
-          	if(res.success){
-    	  		$('.success').removeClass('d-none');
-    	  		$('.success').addClass('text-danger');
-	              $('.success').show();
-	              $('.success').text('successfully Deleted');
-	              $('.success').fadeOut(3000);
-	              getData();
+    	if(confirm('Are you sure to delete?')){
+          var id=$(this).data('id');
+            console.log(id);
+             var url="{{route('medicine.destroy',':id')}}";
+            
+             url=url.replace(':id',id);
+             
+             $.ajax({
+                url:url,
+                type:"post",
+                data:{"_method": 'DELETE'},
+                dataType:'json',
+                success:function(res){
+                  if(res.success){
+                  $('.success').removeClass('d-none');
+                  $('.success').addClass('text-danger');
+                      $('.success').show();
+                      $('.success').text('successfully Deleted');
+                      $('.success').fadeOut(3000);
+                      getData();
 
-	          }},
-	          
+                  }},
+                  
 
-	      });
+              });
+      }
 
     	})
     

@@ -290,14 +290,14 @@
             function getData(){
       $.get("{{route('getuser')}}",function(response){
           //  console.log(response)
-            var j=1;
+            var l=1;
             var html='';
-                  $.each(response,function(i,v){
+                  
                    // console.log(v);
-                       $.each(v,function(j,k){
+                       $.each(response,function(j,k){
                         //console.log(k);
                         html+=`<tr>
-                                      <td>${j++}</td>
+                                      <td>${l++}</td>
                                       <td>${k.user.name}</td>
                                       <td>${k.user.email}</td>
                                       <td>${k.reception.address}</td>
@@ -317,7 +317,7 @@
 
                        
             
-      })
+    
     }
 
 
@@ -427,31 +427,32 @@
 
 
       $('tbody').on('click','.btnDelete',function(){
-      
-      var id=$(this).data('id');
-      //console.log(id);
-       var url="{{route('reception.destroy',':id')}}";
-      
-       url=url.replace(':id',id);
-       
-       $.ajax({
-          url:url,
-          type:"post",
-          data:{"_method": 'DELETE'},
-          dataType:'json',
-          success:function(res){
-            if(res.success){
-            $('.success').removeClass('d-none');
-            $('.success').addClass('text-danger');
-                $('.success').show();
-                $('.success').text('successfully Deleted');
-                $('.success').fadeOut(3000);
-                getData();
+          if(confirm('Are you sure to delete?')){
+              var id=$(this).data('id');
+              //console.log(id);
+               var url="{{route('reception.destroy',':id')}}";
+              
+               url=url.replace(':id',id);
+               
+               $.ajax({
+                  url:url,
+                  type:"post",
+                  data:{"_method": 'DELETE'},
+                  dataType:'json',
+                  success:function(res){
+                    if(res.success){
+                    $('.success').removeClass('d-none');
+                    $('.success').addClass('text-danger');
+                        $('.success').show();
+                        $('.success').text('successfully Deleted');
+                        $('.success').fadeOut(3000);
+                        getData();
 
-            }},
-            
+                    }},
+                    
 
-        });
+                });
+          }
      });
 })
 </script>

@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\DoctorResource;
 use DB;
+use Auth;
 
 
 class DoctorController extends Controller
@@ -107,7 +108,7 @@ class DoctorController extends Controller
         
         $doctor=Doctor::create([
             // 'owner_id'=>Auth::user()->id,
-            'owner_id'=>1,
+            'owner_id'=>Auth::user()->owner->id,
             'user_id'=>$user->id,
             'nrc'=>request('nrc'),
             'age'=>request('age'),

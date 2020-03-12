@@ -17,6 +17,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>Clinic</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -53,6 +54,7 @@
                               <td>${v.doctorinfo.name}</td>
                               <td>${v.doctorinfo.email}</td>
                               <td>${v.doctor.phone}</td>
+                              <td>${v.ownerinfo.clinic_name}</td>
                               <td>
                                  <a href='' class="btn btn-primary btn-sm d-inline-block btnEdit " data-id="${v.doctor.id}"><i class="ni ni-settings"></i></a>
                                  <a href="" class="btn btn-warning btn-sm d-inline-block btnDetail " data-id="${v.doctor.id}"><i class="ni ni-collection"></i></a>
