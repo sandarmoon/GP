@@ -132,7 +132,7 @@ class OwnerController extends Controller
     {
         $owner =Owner::with('user')->find($id);
         //dd($doctor);
-        return view('owner.detail',compact('owner'));
+        return view('owner.detail1',compact('owner'));
     }
 
     /**
