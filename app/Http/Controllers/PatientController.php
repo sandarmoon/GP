@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Patient;
 use App\Doctor;
 use App\Treatment;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PatientController extends Controller
 {
@@ -83,6 +84,7 @@ class PatientController extends Controller
      $patient->allergy=request('allergy');
      $patient->job=request('job');
      $patient->file=json_encode($path);
+     $patient->reception_id=1;
      $patient->save();
 
      $treatment=new Treatment;
@@ -107,8 +109,9 @@ class PatientController extends Controller
     public function show($id)
     {
          $patient = Patient::find($id);
-
-         return view('patients.show',compact('patient'));
+          $doctors=Doctor::where('owner_id',1)->get();
+          $treatments=Treatment::where('patient_id',$id)->where('gc_level','!=',null)->get();
+         return view('patients.show',compact('patient','doctors','treatments'));
     }
 
     /**
@@ -120,6 +123,7 @@ class PatientController extends Controller
     public function edit($id)
     {
         $patient = Patient::find($id);
+        
         // dd(json_decode($patient->file));
         return view('patients.edit',compact('patient'));
     }
@@ -183,5 +187,21 @@ class PatientController extends Controller
          $patient = Patient::find($id);
         $patient->delete();
         return redirect()->route('patient.index');
+    }
+
+    public function incharge(Request $request)
+    {
+    $doctor_id=Doctor::first()->value('id');
+         $treatment=new Treatment;
+     $treatment->patient_id=request('patient_id');
+     if(request('dcotor')){
+        $treatment->doctor_id=request('doctor');
+     }else{
+        $treatment->doctor_id=$doctor_id;
+
+     }
+     $treatment->save();
+     Alert::success('status', 'incharge successfully!');
+      return redirect('patient');
     }
 }

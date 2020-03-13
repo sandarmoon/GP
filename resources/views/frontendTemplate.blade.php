@@ -355,7 +355,7 @@
      
       
   </script>
-
+  @include('sweetalert::alert')
   @yield('script')
 </body>
 

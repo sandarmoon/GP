@@ -1,4 +1,6 @@
 <?php $__env->startSection('content'); ?>
+<div class="row">
+   <div class="col-12" style="margin-top: 130px;">
 
   <div class="card-header border-0">
     <a href="<?php echo e(route('patient.create')); ?>" class="btn btn-primary float-right">Add New Patient</a>
@@ -32,7 +34,8 @@
             </table>
     </div>
    
-  
+  </div>
+</div>
   
 	
 <?php $__env->stopSection(); ?>

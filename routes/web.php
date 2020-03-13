@@ -48,10 +48,11 @@ Route::get('/getDoctor','DoctorController@getDoctor')->name('getDoctor');
 
 //Patient
 Route::resource('patient','PatientController');
+Route::post('incharge','PatientController@incharge')->name('incharge');
 
 Route::resource('reception','ReceptionController');
 
-
+Route::get('print','PrintOutController@index')->name('print');
 
 
 Auth::routes();

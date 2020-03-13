@@ -1,8 +1,12 @@
 <?php $__env->startSection('content'); ?>
 <div class="row">
+  <div class="col-12" style="margin-top: 130px;">
+
+<div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-header border-0">
+        
         <a href="<?php echo e(route('patient.create')); ?>" class="btn btn-primary float-right">Add New Patient</a>
         <h3 class="mb-0">Patient tables</h3>
       </div>
@@ -48,11 +52,13 @@
     </div>
   </div>
 </div>
+</div>
+</div>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('script'); ?>
 <script type="text/javascript">
- 
+ $('div.alert').delay(3000).slideUp(300);
 </script>
 <?php $__env->stopSection(); ?>
 

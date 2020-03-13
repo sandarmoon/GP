@@ -77,7 +77,7 @@
                   <div class="text-center">
                     <input type="submit" class="btn btn-primary mt-4" value="Create Account"/>
                   </div>
-                </form>
+                
               </div>
             </div>
           </div>
