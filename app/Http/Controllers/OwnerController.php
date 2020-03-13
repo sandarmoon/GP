@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use URL;
 use Session;
+use Yajra\DataTables\Facades\DataTables;
 
 
 
@@ -34,8 +35,11 @@ class OwnerController extends Controller
     }
 
     public function getOwners(){
-        $owners=Owner::with('user')->get();
-        return $owners;
+        
+        
+
+        $all=Owner::with('user')->get();
+        return Datatables::of($all)->make(true);
     }
 
 
@@ -126,7 +130,9 @@ class OwnerController extends Controller
      */
     public function show($id)
     {
-        //
+        $owner =Owner::with('user')->find($id);
+        //dd($doctor);
+        return view('owner.detail',compact('owner'));
     }
 
     /**

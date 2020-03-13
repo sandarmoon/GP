@@ -59,11 +59,13 @@
           <h3 class="mb-0">Medicine Types </h3>
         </div>
         <div class="table-responsive">
-          <table class="table align-items-center table-white table-flush" id="dataTable">
+          <table class="table align-items-center table-white table-flush" id="medicineType">
             <thead class="thead-light">
               <tr>
-                <th>medicine ID</th>
+                <th>id</th>
                 <th>Name</th>
+                <th>Action</th>
+                
                
               </tr>
             </thead>
@@ -88,37 +90,62 @@
 
     //datatable js start here
 
-    $.get('/getMedicineType',function(response){
-        // console.log(response);
-        loadData(response);
-        
-      })
-      
-    function loadData(data){
-      console.log(data);
-      
-       $(".dataTables").dataTable().fnDestroy();    
-         var oTable = $('#dataTables').dataTable({
-             "aaData" : data.data,
-             "processing": true,
-            "bPaginate": false,
-            "bFilter": false,
-            "bSort": false,
-            "bInfo": false,
-            "aoColumnDefs": [{
-            "sTitle": "medicine ID",
-            "aTargets": [0]
-        }, {
-            "sTitle": "Name",
-            "aTargets": [1]
-        }],
-            "aoColumns": [{
-            "mData": "id"
-        }, {
-            "mData": "name"
-        }]
-            });
+    getData();
+    function getData(){
+      var i=1;
+          $('#medicineType').DataTable({
+          
+          "processing": true,
+          destroy:true,
+          "sort":false,
+          pagingType: 'full_numbers',
+           pageLength: 5,
+           language: {
+             oPaginate: {
+               sNext: '<i class="fa fa-forward"></i>',
+               sPrevious: '<i class="fa fa-backward"></i>',
+               sFirst: '<i class="fa fa-step-backward"></i>',
+               sLast: '<i class="fa fa-step-forward"></i>'
+               }
+             } ,
+             "serverSide": true,
+             "stateSave": true,  //restore table state on page reload,
+           "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
+          "ajax": "<?php echo e(route('medicineType.getType')); ?>",
+          "columns":[
+
+               {render:function(){
+                
+                return i++;
+               }},
+              { "data": "name" },
+              { "data": "id",
+                sortable:false,
+                render:function(data){
+                  return `<button class="btn btn-primary btn-sm d-inline-block btnEdit "  data-id="${data}"><i class="ni ni-settings"></i></button>
+                            <button class="btn btn-danger btn-sm d-inline-block btnDelete " data-id="${data}"> <i class="ni ni-fat-delete"></i></button>`;
+                }
+               }
+          ],
+          "info":false
+          
+       });
     }
+
+    $('#medicineType').on('click','.btnEdit',function(){
+        // $('#EditMedicineType').show();
+        // $('#AddMedicineType').hide();
+         var id=$(this).data('id');
+         alert(id);
+        // var name=$(this).data('name');
+        // //alert(id,name);
+      
+        //   $('#ucname').val(name);
+        //   $('.medTypeid').val(id);
+      
+      })
+
+    
 
 
 

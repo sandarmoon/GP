@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Medicinetype; 
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Resources\MedicinetypeResource;
 
 class MedicineTypeController extends Controller
 {
@@ -17,13 +18,14 @@ class MedicineTypeController extends Controller
     {
         $medTypes=Medicinetype::simplePaginate(15);
        //  return view('medicinetype.index1',compact('medTypes'));
-       return view('medicinetype.index',compact('medTypes'));;
+       return view('medicinetype.index1',compact('medTypes'));;
     }
 
     public function getMedicineType()
     {
-
-        return Datatables::of(Medicinetype::all())->make(true);
+        $all=Medicinetype::all();
+        $all=MedicinetypeResource::collection($all);
+        return Datatables::of($all)->make(true);
         
     }
 

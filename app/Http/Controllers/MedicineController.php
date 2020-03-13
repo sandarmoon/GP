@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Medicine;
 use App\Medicinetype;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Resources\MedicineResource;
 class MedicineController extends Controller
 {
@@ -120,10 +121,12 @@ class MedicineController extends Controller
     }
 
     public function getMedicine(){
-
+        
+        
 
         $medicines=Medicine::orderBy('id','DESC')->get();
 
-        return MedicineResource::collection($medicines);
+        $all=MedicineResource::collection($medicines);
+        return Datatables::of($all)->make(true);
     }
 }

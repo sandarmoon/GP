@@ -6,7 +6,7 @@
       
       <div class="row">
         <div class="col-lg-4 px-xl-2 col-sm-4">
-          <img src="{{asset($doctor->avatar)}} " class="profilemedia w-100 pl-sm-3 pl-lg-0 mt-5  rounded-circle">
+          <img src="{{asset($owner->avatar)}} " class="img-fluid profilemedia w-100 pl-sm-3 pl-lg-0 mt-5  rounded-circle">
           <br>
             
         </div>
@@ -15,55 +15,69 @@
             <div class="col-lg-6 order-lg-0 order-md-0 col-md-6  order-sm-1 mt-sm-2">
                 <h2 class="">General Information</h2>
                     <div class="p-3">
-                        <div><span>Name:</span><h3 class="ml-2 d-inline-block">{{$doctor->user->name}}</h3></div>
+                        <div><span>Name:</span><h3 class="ml-2 d-inline-block">{{$owner->user->name}}</h3></div>
                        <div><span>Age:</span><h3 class="ml-2 d-inline-block">
-                        @if(!empty($doctor->age))
-                        {{$doctor->age}} years
+                        @if(!empty($owner->age))
+                        {{$owner->age}} years
                         @else 
                         Unknown 
                         @endif  </h3></div>
+                        <div><span>NRC:</span><h3 class="ml-2 d-inline-block">
+                        @if(!empty($owner->nrc))
+                        {{$owner->nrc}} 
+                        @else 
+                        Unknown 
+                        @endif </h3></div>
                        <div><span>Date of Birth:</span><h3 class="ml-2 d-inline-block">
-                        @if(!empty($doctor->age))
-                        {{$doctor->dob}} 
+                        @if(!empty($owner->age))
+                        {{$owner->dob}} 
                         @else 
                         Unknown 
                         @endif </h3></div>
                     </div>
-                <h2 class="mt-3">Eduction Information</h2>
+                <h2 class="mt-3">Clinic Information</h2>
 
                     <div class="p-3">
-                        <div><span>Degree:</span><h3 class="ml-2 d-inline-block">
-                          @if(!empty($doctor->degree))
-                          {{$doctor->degree}} 
+                        <div><span>Name:</span><h3 class="ml-2 d-inline-block">
+                          @if(!empty($owner->clinic_name))
+                          {{$owner->clinic_name}} 
                           @else 
                           Unknown 
                           @endif 
                         </h3></div>
-                       <div id="preview-certificate"  data-img={{$doctor->certificate}}><span>Certificate:</span>
-                        @if(!empty($doctor->certificate))
-                          
-                          <?php $array=json_decode($doctor->certificate,true);
-                            foreach($array as $k=>$a):?>
-                            <img src="{{asset($a)}}" class="showimg"  data-id="{{$k}}" data-img="{{$doctor->certificate}}" width="40" height="40">
-                          
-                          <?php endforeach; ?>
+
+                        <div><span>Logo:</span><h3 class="ml-2 d-inline-block">
+                          @if(!empty($owner->clinic_logo))
+                          <img src="{{asset($owner->clinic_logo)}}" width="50" height="50"/> 
+                          @else 
+                          No logo is assigned!
+                          @endif 
+                        </h3></div>
+
+                        <div><span>Time:</span><h3 class=" d-inline-block">
+                          @if(!empty($owner->clinic_time))
+                          {{$owner->clinic_time}} 
+                          @else 
+                          Unknown 
+                          @endif 
+                        </h3></div>
+
+                        
+
+                        <div><span>Address:</span><h4  class=" ml-2 d-inline-block">      @if(!empty($owner->address))
+                          {{$owner->address}} 
+                          @else 
+                          Unknown 
+                          @endif </h4 ></div>
+                    <div><span>Phone:</span><h4  class=" ml-2 d-inline-block">  
+                          @if(!empty($owner->phone))
+                          {{$owner->phone}} 
+                          @else 
+                          Unknown 
+                          @endif </h4 ></div>
                          
-                          @endif
-
-
-
-                       </div>
-                       <div id="preview-license" class="mt-4" data-img={{$doctor->license}}><span>License:</span>
-                        @if(!empty($doctor->license))
-                          
-                          <?php $array=json_decode($doctor->license,true);
-                            foreach($array as $k=>$a):?>
-                            <img src="{{asset($a)}}" class="showimg" data-id="{{$k}}"   width="40" height="40">
-                          
-                          <?php endforeach; ?>
-                         
-                          @endif
-                        </div>
+                       
+                       
                     </div>
             </div>
             <div class="col-lg-6 col-md-6 order-md-0  order-lg-0">
@@ -71,42 +85,31 @@
                  
                   <div class="card-body bg-secondary">
                        <h3 class="">Contact Information</h3>
-                    <div><span>Address:</span><h4  class=" ml-2 d-inline-block">      @if(!empty($doctor->address))
-                          {{$doctor->address}} 
+                    <div><span>Address:</span><h4  class=" ml-2 d-inline-block">      @if(!empty($owner->address))
+                          {{$owner->address}} 
                           @else 
                           Unknown 
                           @endif </h4 ></div>
                     <div><span>Phone:</span><h4  class=" ml-2 d-inline-block">  
-                          @if(!empty($doctor->phone))
-                          {{$doctor->phone}} 
+                          @if(!empty($owner->phone))
+                          {{$owner->phone}} 
                           @else 
                           Unknown 
                           @endif </h4 ></div>
                     <div><span>Account :</span><h4  class=" ml-2 d-inline-block">
-                          @if(!empty($doctor->user->email))
-                          {{$doctor->user->email}} 
+                          @if(!empty($owner->user->email))
+                          {{$owner->user->email}} 
                           @else 
                           Unknown 
                           @endif 
                     </h4 ></div>
-                    <a href="{{route('doctor.edit',$doctor->id)}}" class="btn btn-primary">Edit Profile</a>
+                    <a href="{{route('owners.edit',$owner->id)}}" class="btn btn-primary">Edit Profile</a>
                   </div>
                 </div>
             </div>
           </div>
 
-          <h2 class="mt-3 order-sm-2">Experience Information</h2>
-
-              <div class="p-3">
-                  <div><h4>
-                    @if(!empty($doctor->experience))
-                          {{$doctor->experience}} 
-                          @else 
-                          Unknown 
-                          @endif 
-                  </h4></div>
-                 
-              </div>    
+           
         </div>
       </div>
       

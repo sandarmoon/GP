@@ -90,7 +90,7 @@
         </div>
         <!-- Light table -->
         <div class="table-responsive">
-          <table class="table align-items-center table-flush">
+          <table class="table align-items-center table-flush" id="medicineTable">
             <thead class="thead-light">
               <tr>
                 <th>No</th>
@@ -100,37 +100,13 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody class="list" id="medicineTable">
+            <tbody>
               
             </tbody>
           </table>
         </div>
         <!-- Card footer -->
-        <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        
       </div>
     </div>
   </div>
@@ -155,62 +131,89 @@
 
 
     // getData
-     function getData(){
-    	console.log('you make it');
-    	$.get("<?php echo e(route('getMedicine')); ?>",function(response){
-    		var j=1;
-    		var html='';
-    		$.each(response,function(i,v){
-    			// console.log(v);
-            		html+=`<tr>
-			                    <td>${j++}</td>
-			                    <td>${v.name}</td>
-			                    <td>${v.medcinetype}</td>
-			                    <td>${v.chemical}</td>
-			                    <td>
-			                       <button class="btn btn-primary btn-sm d-inline-block btnEdit " data-id="${v.id}"><i class="ni ni-settings"></i></button>
-					                  <button class="btn btn-danger btn-sm d-inline-block btnDelete " data-id="${v.id}"> <i class="ni ni-fat-delete"></i></button>
+    //  function getData(){
+    // 	console.log('you make it');
+    // 	$.get("<?php echo e(route('getMedicine')); ?>",function(response){
+    // 		var j=1;
+    // 		var html='';
+    // 		$.each(response,function(i,v){
+    // 			// console.log(v);
+    //         		html+=`<tr>
+			 //                    <td>${j++}</td>
+			 //                    <td>${v.name}</td>
+			 //                    <td>${v.medcinetype}</td>
+			 //                    <td>${v.chemical}</td>
+			 //                    <td>
+			 //                       <button class="btn btn-primary btn-sm d-inline-block btnEdit " data-id="${v.id}"><i class="ni ni-settings"></i></button>
+				// 	                  <button class="btn btn-danger btn-sm d-inline-block btnDelete " data-id="${v.id}"> <i class="ni ni-fat-delete"></i></button>
 			                       
-			                    </td>
+			 //                    </td>
 
-			                </tr>`;
+			 //                </tr>`;
 
-            	})
+    //         	})
 
-				$('#medicineTable').html(html);
-    	})
-    }
-
-    //using datatable js
-
-    // function getDatas(){
-    //   // console.log('you make it');
-    //   $.get("<?php echo e(route('getMedicine')); ?>",function(response){
-    //     var j=1;
-    //     var html='';
-    //    console.log(response);
-    //        $('#medicineTables').DataTable( {
-    //         data: response,
-    //         "fnDrawCallback": function ( oSettings ) {
-    //             /* Need to redo the counters if filtered or sorted */
-    //             if ( oSettings.bSorted || oSettings.bFiltered )
-    //             {
-    //                 this.$('td:first-child', {"filter":"applied"}).each( function (i) {
-    //                     that.fnUpdate( i+1, this.parentNode, 0, false, false );
-    //                 } );
-    //             }
-    //         },
-    //         columns: [
-    //             { data: "name" },
-    //             { data: "chemical" },
-                
-                
-    //         ],
-    //         "aaSorting": [[ 1, 'asc' ]]
-
-    //     } );
-    //   })
+				// $('#medicineTable').html(html);
+    // 	})
     // }
+
+    //datatable js start
+      function getData(){
+          var i=1;
+              $('#medicineTable').DataTable({
+              
+              "processing": true,
+              destroy:true,
+              "sort":false,
+              pagingType: 'full_numbers',
+               pageLength: 5,
+               language: {
+                 oPaginate: {
+                   sNext: '<i class="fa fa-forward"></i>',
+                   sPrevious: '<i class="fa fa-backward"></i>',
+                   sFirst: '<i class="fa fa-step-backward"></i>',
+                   sLast: '<i class="fa fa-step-forward"></i>'
+                   }
+                 } ,
+                 "serverSide": true,
+                 "stateSave": true,  //restore table state on page reload,
+               "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
+              "ajax": "<?php echo e(route('getMedicine')); ?>",
+              "columns":[
+
+                   {render:function(){
+                    
+                    return i++;
+                   }},
+
+                  { "data": "name",
+                  render:function(data){
+                    $('.btnEdit').attr('data-name', data);
+                    return data;
+                  } },
+
+                  { "data": "medcinetype"
+                  } ,
+
+                  { "data": "chemical"
+                  } ,
+
+                  { "data": "id",
+                    sortable:false,
+                    render:function(data){
+                      return `<button class="btn btn-primary btn-sm d-inline-block btnEdit "  data-id="${data}"><i class="ni ni-settings"></i></button>
+                                <button class="btn btn-danger btn-sm d-inline-block btnDelete " data-id="${data}"> <i class="ni ni-fat-delete"></i></button>`;
+                    }
+                   }
+              ],
+              "info":false
+              
+           });
+      }
+
+    // end datatablejs here
+
+    
 
 
     $('.addNew').click(function(){
