@@ -16,7 +16,8 @@ class DoctorResource extends JsonResource
     {
          return [
             'doctor'=>parent::toArray($request),
-            'doctorinfo'=>$this->user
+            'doctorinfo'=>$this->user,
+            'ownerinfo'=>$this->owner,
         ];
     }
 }

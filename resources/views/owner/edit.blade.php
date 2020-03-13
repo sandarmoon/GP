@@ -1,4 +1,5 @@
-<?php $__env->startSection('content'); ?>
+@extends('frontendTemplate')
+@section('content')
 	
     <!-- Page content -->
     <div class="container-fluid mt-3">
@@ -10,7 +11,7 @@
 
                 <div class="card-profile-image " id="profileImg">
                   <a href="#">
-                    <img src="<?php echo e(asset('storages/img/team-4-800x800.jpg')); ?>" class="rounded-circle">
+                    <img src="{{asset($owner->avatar)}}" class="rounded-circle">
                   </a>
                   <div class="Text "><a href="#" >Change Profile</a></div>
                 </div>
@@ -32,26 +33,18 @@
                 </div>
               </div>
               <div class="text-center">
-                <form id="OwnerResume" enctype="multipart/formData">
+                <form id="OwnerResumeUpdate" enctype="multipart/formData">
                   <div class="form-group">
                     <span class="Ename error "></span>
                     <div class="input-group input-group-alternative mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                       </div>
-                      <input class="form-control" name="name" placeholder="Name" type="text">
+                      <input class="form-control" name="name" value="{{$owner->user->name}}"  type="text">
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <span class="Eemail error "></span>
-                    <div class="input-group input-group-alternative mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                      </div>
-                      <input class="form-control" name="email" placeholder="Email" type="email">
-                    </div>
-                  </div>
+                  
 
                   <div class="form-group">
                     <div class="input-group input-group-alternative mb-3">
@@ -64,18 +57,10 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <span class="Epassword error "></span>
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                      </div>
-                      <input class="form-control" name="password" placeholder="Password" type="password">
-                    </div>
-                  </div>
+                  
 
                   <div class="text-center">
-                    <input type="submit" class="btn btn-primary mt-4" value="Create Account"/>
+                    <input type="submit" class="btn btn-primary mt-4" value="Update Now!"/>
                   </div>
                 
               </div>
@@ -101,19 +86,19 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-nrc">NRC</label>
-                        <input type="text" id="input-nrc" name="nrc" class="form-control form-control-alternative" placeholder="enter nrc" value="9/AMZ(n)093211">
+                        <input type="text" id="input-nrc" name="nrc" class="form-control form-control-alternative" placeholder="enter nrc" value="{{$owner->nrc}}">
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-age">Age</label>
-                        <input type="text" id="input-age" name="age" class="form-control form-control-alternative" placeholder="23">
+                        <input type="text" id="input-age" name="age" class="form-control form-control-alternative" value="{{$owner->age}}" placeholder="23">
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-dob">Date of Birth</label>
-                        <input type="date" id="input-dob" name="dob" class="form-control form-control-alternative" placeholder="">
+                        <input type="date" id="input-dob" name="dob" value="{{$owner->dob}}" class="form-control form-control-alternative" placeholder="">
                       </div>
                     </div>
                   </div>
@@ -130,28 +115,48 @@
                   <div class="row">
                       <div class="col-lg-6">
                         <div class="form-group">
-                          
                           <label class="form-control-label" for="input-clinic_name">Name</label>
-                          <input type="text" id="input-clinic_name" name="clinic_name" class="form-control form-control-alternative" placeholder="" >
-                          <span class="Eclinic_name error "></span>
+                          <input type="text" id="input-clinic_name" value="{{$owner->clinic_name}}" name="clinic_name" class="form-control form-control-alternative" placeholder="" >
                         </div>
                       </div>
                       <div class="col-lg-6">
-                        <div class="form-group">
 
-                          <label class="form-control-label" for="input-clinic_logo">Logo</label>
-                          <input type="file" id="input-clinic_logo" name="clinic_logo" class="form-control form-control-alternative" placeholder="" >
-                          <span class="Eclinic_logo error "></span>
+                        <nav>
+                          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Old logo</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">New Logo</a>
+                           
+                          </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                              <div class="form-group">
+                                <img src="{{asset($owner->clinic_logo)}}" width="50" height="50">
+                              </div>
+                          </div>
+                          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                              <div class="form-group">
+                                
+                                <input type="file" id="input-new_clinic_logo" name="new_clinic_logo" class="form-control form-control-alternative" placeholder="" >
+                                <input type="hidden" name="old_clinic_logo" value="{{$owner->clinic_logo}}">
+                                <input type="hidden" name="oldid" value="{{$owner->id}}" name="">
+                              </div>
+                          </div>
+                          
                         </div>
+                        
                       </div>
+
+
+
+                      
                   </div>
 
                   <div class="row">
                       <div class="col-lg-12">
                         <div class="form-group">
                           <label class="form-control-label" for="input-clinic_time">Time of Clinic</label>
-                          <input type="text" id="input-clinic_time" name="clinic_time" class="form-control form-control-alternative" placeholder="" >
-                          <span class="Eclinic_time error "></span>
+                          <input type="text" id="input-clinic_time" name="clinic_time" class="form-control form-control-alternative" value="{{$owner->clinic_time}}" placeholder="" >
                         </div>
                       </div>
                   </div>
@@ -161,8 +166,7 @@
                       <div class="col-lg-12">
                         <div class="form-group">
                           <label class="form-control-label" for="input-phone">Phone</label>
-                          <input type="text" id="input-phone" name="phone" class="form-control form-control-alternative" placeholder="" >
-                          <span class="Ephone error "></span>
+                          <input type="text" id="input-phone" name="phone" class="form-control form-control-alternative" value="{{$owner->phone}}" placeholder="" >
                         </div>
                       </div>
                   </div>
@@ -171,10 +175,9 @@
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label"  for="input-address">Address</label>
-                        <textarea rows="4" name="address" id="input-address" class="form-control form-control-alternative">
-                          
+                        <textarea rows="4" name="address"  id="input-address" class="form-control form-control-alternative">
+                          {{$owner->address}}
                         </textarea>
-                        <span class="Eaddress error "></span>
                         
                       </div>
                     </div>
@@ -191,8 +194,8 @@
      
       
     </div>
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('script'); ?>
+@endsection
+@section('script')
 <script type="text/javascript">
   $(document).ready(function(){
        $.ajaxSetup({
@@ -201,46 +204,8 @@
             }
         });
 
-
-
-    
-
-    $('#OwnerResume').submit(function(e){
-      e.preventDefault();
-      var formData= new FormData(this);
-      var url="<?php echo e(route('owners.store')); ?>";
-      $.ajax({
-                type:'POST',
-                url: url,
-                data: formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                success: (data) => {
-                   
-                 window.location.href="<?php echo e(route('owners.index')); ?>";
-                    
-                },
-                error: function(error){
-                   var errors=error.responseJSON.errors;
-                   if(errors){
-                   
-                     $('.Ename').text(errors.name);
-                     $('.Epassword').text(errors.password);
-                     $('.Eemail').text(errors.email);
-                     $('.Eclinic_name').text(errors.clinic_name);
-                     $('.Eclinic_logo').text(errors.clinic_logo);
-                     $('.Eclinic_time').text(errors.clinic_time);
-                     $('.Ephone').text(errors.phone);
-                     $('.Eaddress').text(errors.address);
-                     $('span.error').addClass('text-danger');
-                   }
-                }
-            });
-    })
-
     $('input[name="avatar"]').change(function(){
-      //alert('hello');
+      // alert('hello');
       var  reader=new FileReader();
       reader.onload=(e)=>{
 
@@ -250,7 +215,46 @@
       }
       reader.readAsDataURL(this.files[0]); 
     })
+
+ $('#OwnerResumeUpdate').submit(function(e){
+
+      e.preventDefault();
+    var formData= new FormData(this);
+    var id=$('input[name="oldid"]').val();
+    var name=$('input[name="name"]').val();
+   
+      // var form_data = $("#doctorResumeUpdate").serialize();
+    
+    formData.append('_method', 'PUT');
+      console.log(name);
+      var url="{{route('owners.update',':id')}}";
+      
+      url=url.replace(':id',id);
+      $.ajax({
+                type:'post',
+                url: url,
+                data:formData,
+                cache:false,
+                dataType:'json',
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                 window.location.href="{{route('owners.index')}}";
+                    //this.reset();
+                    //alert('Image has been uploaded successfully');
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            });
+    })
+
+
+
+
+    
+
+   
   })
 </script>
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('frontendTemplate', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/teach_prj/clinic/resources/views/owner/create.blade.php ENDPATH**/ ?>
+@endsection

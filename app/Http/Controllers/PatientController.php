@@ -79,6 +79,7 @@ class PatientController extends Controller
      $patient->phoneno=request('phoneno');
      $patient->address=request('address');
      $patient->married_status=request('married');
+     $patient->status=0;
      $patient->pregnant=request('pregnant');
      $patient->body_weight=request('weight');
      $patient->allergy=request('allergy');
@@ -158,21 +159,21 @@ class PatientController extends Controller
 
        $patient = Patient::find($id);
         $patient->name= request('name');
-     $patient->fathername=request('fathername');
-     $patient->age=request('age');
-     $patient->child=request('child');
-     $patient->gender=request('gender');
-     $patient->phoneno=request('phoneno');
-     $patient->address=request('address');
-     $patient->married_status=request('married');
-     $patient->pregnant=request('pregnant');
-     $patient->body_weight=request('weight');
-     $patient->allergy=request('allergy');
-     $patient->job=request('job');
-     $patient->file=$path;
-     $patient->status=0;
-     $patient->save();
-     return redirect()->route('patient.index');
+         $patient->fathername=request('fathername');
+         $patient->age=request('age');
+         $patient->child=request('child');
+         $patient->gender=request('gender');
+         $patient->phoneno=request('phoneno');
+         $patient->address=request('address');
+         $patient->married_status=request('married');
+         $patient->pregnant=request('pregnant');
+         $patient->body_weight=request('weight');
+         $patient->allergy=request('allergy');
+         $patient->job=request('job');
+         $patient->file=$path;
+         $patient->status=1;
+         $patient->save();
+         return redirect()->route('patient.index');
 
     }
 

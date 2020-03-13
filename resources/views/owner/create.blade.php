@@ -131,14 +131,18 @@
                   <div class="row">
                       <div class="col-lg-6">
                         <div class="form-group">
+                          
                           <label class="form-control-label" for="input-clinic_name">Name</label>
                           <input type="text" id="input-clinic_name" name="clinic_name" class="form-control form-control-alternative" placeholder="" >
+                          <span class="Eclinic_name error "></span>
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
+
                           <label class="form-control-label" for="input-clinic_logo">Logo</label>
                           <input type="file" id="input-clinic_logo" name="clinic_logo" class="form-control form-control-alternative" placeholder="" >
+                          <span class="Eclinic_logo error "></span>
                         </div>
                       </div>
                   </div>
@@ -148,6 +152,7 @@
                         <div class="form-group">
                           <label class="form-control-label" for="input-clinic_time">Time of Clinic</label>
                           <input type="text" id="input-clinic_time" name="clinic_time" class="form-control form-control-alternative" placeholder="" >
+                          <span class="Eclinic_time error "></span>
                         </div>
                       </div>
                   </div>
@@ -158,6 +163,7 @@
                         <div class="form-group">
                           <label class="form-control-label" for="input-phone">Phone</label>
                           <input type="text" id="input-phone" name="phone" class="form-control form-control-alternative" placeholder="" >
+                          <span class="Ephone error "></span>
                         </div>
                       </div>
                   </div>
@@ -169,6 +175,7 @@
                         <textarea rows="4" name="address" id="input-address" class="form-control form-control-alternative">
                           
                         </textarea>
+                        <span class="Eaddress error "></span>
                         
                       </div>
                     </div>
@@ -211,18 +218,23 @@
                 contentType: false,
                 processData: false,
                 success: (data) => {
-                    // this.reset();
-                    console.log(this.data);
+                   
+                 window.location.href="{{route('owners.index')}}";
                     
                 },
                 error: function(error){
                    var errors=error.responseJSON.errors;
                    if(errors){
                    
-                    // $('.Ename').text(errors.name);
-                    // $('.Epassword').text(errors.password);
-                    //  $('.Eemail').text(errors.email);
-                    // $('span.error').addClass('text-danger');
+                     $('.Ename').text(errors.name);
+                     $('.Epassword').text(errors.password);
+                     $('.Eemail').text(errors.email);
+                     $('.Eclinic_name').text(errors.clinic_name);
+                     $('.Eclinic_logo').text(errors.clinic_logo);
+                     $('.Eclinic_time').text(errors.clinic_time);
+                     $('.Ephone').text(errors.phone);
+                     $('.Eaddress').text(errors.address);
+                     $('span.error').addClass('text-danger');
                    }
                 }
             });

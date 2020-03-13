@@ -8,6 +8,8 @@ use App\Reception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\UserResource;
+use Auth;
+
 
 //use Spatie\Permission\Traits\HasRoles;
 class ReceptionController extends Controller
@@ -73,6 +75,7 @@ class ReceptionController extends Controller
         $reception->education=request('education');
         $reception->address=request('address');
         $reception->user_id=$user->id;
+        $reception->owner_id=Auth::user()->owner->id;
         $reception->file=$path;
         $reception->save();
 

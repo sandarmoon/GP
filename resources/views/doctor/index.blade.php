@@ -18,6 +18,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>Clinic</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -54,6 +55,7 @@
                               <td>${v.doctorinfo.name}</td>
                               <td>${v.doctorinfo.email}</td>
                               <td>${v.doctor.phone}</td>
+                              <td>${v.ownerinfo.clinic_name}</td>
                               <td>
                                  <a href='' class="btn btn-primary btn-sm d-inline-block btnEdit " data-id="${v.doctor.id}"><i class="ni ni-settings"></i></a>
                                  <a href="" class="btn btn-warning btn-sm d-inline-block btnDetail " data-id="${v.doctor.id}"><i class="ni ni-collection"></i></a>
@@ -81,30 +83,32 @@
         })
 
         $('#doctorTable').on('click','.btnDelete',function(){
+            if(confirm('Are you sure to delete?')){
+              var id=$(this).data('id');
+              var url="{{route('doctor.destroy',':id')}}";
+          
+               url=url.replace(':id',id);
+               
+               $.ajax({
+                  url:url,
+                  type:"post",
+                  data:{"_method": 'DELETE'},
+                  dataType:'json',
+                  success:function(res){
+                    if(res.success){
+                    $('.success').removeClass('d-none');
+                    $('.success').addClass('text-danger');
+                        $('.success').show();
+                        $('.success').text('successfully Deleted');
+                        $('.success').fadeOut();
+                        getData();
 
-          var id=$(this).data('id');
-          var url="{{route('doctor.destroy',':id')}}";
-      
-           url=url.replace(':id',id);
-           
-           $.ajax({
-              url:url,
-              type:"post",
-              data:{"_method": 'DELETE'},
-              dataType:'json',
-              success:function(res){
-                if(res.success){
-                $('.success').removeClass('d-none');
-                $('.success').addClass('text-danger');
-                    $('.success').show();
-                    $('.success').text('successfully Deleted');
-                    $('.success').fadeOut();
-                    getData();
+                    }},
+                    
 
-                }},
-                
-
-            });
+                });
+            }
+          
         })
 
         $('#doctorTable').on('click','.btnDetail',function(){

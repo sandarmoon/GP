@@ -876,30 +876,32 @@ function showImage(palcement,files){
     //delete process
      $('#expenseTable').on('click','.btnDelete',function(){
       //alert('i am delete');
-      var id=$(this).data('id');
-      console.log(id);
-       var url="{{route('expense.destroy',':id')}}";
-      
-       url=url.replace(':id',id);
+        if(confirm('Are you sure to delete?')){
+           var id=$(this).data('id');
+            console.log(id);
+             var url="{{route('expense.destroy',':id')}}";
+            
+             url=url.replace(':id',id);
 
-           $.ajax({
-              url:url,
-              type:"post",
-              data:{"_method": 'DELETE'},
-              dataType:'json',
-              success:function(res){
-                if(res.success){
-                $('.success').removeClass('d-none');
-                $('.success').addClass('text-danger');
-                    $('.success').show();
-                    $('.success').text('successfully Deleted');
-                    $('.success').fadeOut(3000);
-                    getData();
+                 $.ajax({
+                    url:url,
+                    type:"post",
+                    data:{"_method": 'DELETE'},
+                    dataType:'json',
+                    success:function(res){
+                      if(res.success){
+                      $('.success').removeClass('d-none');
+                      $('.success').addClass('text-danger');
+                          $('.success').show();
+                          $('.success').text('successfully Deleted');
+                          $('.success').fadeOut(3000);
+                          getData();
 
-                }},
-                
+                      }},
+                      
 
-            });
+                  });
+        }
     })
   })//end js
 

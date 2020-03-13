@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Medicinetype;
+use App\Medicinetype; 
+use Yajra\DataTables\Facades\DataTables;
 
 class MedicineTypeController extends Controller
 {
@@ -21,9 +22,9 @@ class MedicineTypeController extends Controller
 
     public function getMedicineType()
     {
-        $medTypes=Medicinetype::all();
-       
-        return $medTypes;
+
+        return Datatables::of(Medicinetype::all())->make(true);
+        
     }
 
     /**

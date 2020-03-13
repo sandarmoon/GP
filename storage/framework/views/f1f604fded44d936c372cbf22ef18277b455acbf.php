@@ -1,135 +1,139 @@
 <?php $__env->startSection('content'); ?>
 
-	<div class=" ">
-      <div class="row pr-2 mb-2">
-        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-          <div class="card card-profile shadow p-2 mt-5 bg-secondary CR" >
-            
-            <form id="AddMedicine">
-			    
-			     <h2>Add New Medicine</h2>
-			      <div class="form-group">
-			        <label for="cname ">Medicine Name</label>
-			        <span class="Ename error d-block" ></span>
-			        <input type="text" name="name" id="cname" placeholder="enter medicine name" class="d-inline form-control ">
-			        
-			      </div>
-			      <div class="form-group">
-			        <label for="medicineType " >Choose MedicineType</label>
-			            <select class="form-control" name="type_id"  id="medicineType">
-			              <?php $__currentLoopData = $medTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $medType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-			              <option value="<?php echo e($medType->id); ?>"><?php echo e($medType->name); ?></option>
-			              
-			              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-			            </select>
-			      </div>
-			      <div class="form-group">
-			        <label for="chemical">Enter Chemically</label>
-			        <span class="Echemical error d-block"></span>
-			          <textarea class="form-control" id="chemical" rows="3"></textarea>
-			          
-			      </div>
-			      <div class="form-group">
-			        <button type="button" class="btn btn-primary btn-md  float-right addNew">Add</button>
-			        
-			      </div>
-			</form>
-			<!-- Add form end -->
-			<!-- Update form start -->
-			<form id="EditMedicine">
-			    
-			     <h2>Update Medicine</h2>
-			      <div class="form-group">
-			        <label for="ucname ">Medicine Name</label>
-			        <span class="UEname error d-block" ></span>
-			        <input type="text" name="name" id="ucname" placeholder="enter medicine name" class="d-inline form-control ">
-			        
-			      </div>
-			      <input type="hidden" name="" class="medid">
-			      <div class="form-group">
-			        <label for="umedicineType" >Choose MedicineType</label>
-			            <select class="form-control" name="typeid"  id="umedicineType">
-			              <?php $__currentLoopData = $medTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $medType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-			              <option class="medtype-<?php echo e($medType->id); ?>" value="<?php echo e($medType->id); ?>"><?php echo e($medType->name); ?></option>
-			              
-			              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-			            </select>
-			      </div>
-			      <div class="form-group">
-			        <label for="uchemical">Enter Chemically</label>
-			        <span class="UEchemical error d-block"></span>
-			          <textarea class="form-control" name="chemical" id="uchemical" rows="3"></textarea>
-			          
-			      </div>
-			      <div class="form-group">
-			        <button type="button" class="btn btn-primary btn-md  float-right update">Update</button>
-			        
-			      </div>
-			</form>
-            
-          </div>
+  <!-- Table -->
+  <div class="row">
+    <div class="col-12">
+      <div class="alert alert-primary success d-none" role="alert"></div>
+    </div>
+
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+      <div class="card" id="AddMedicine">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <h3 class="mb-0">Add New Medicine</h3>
         </div>
-        <div class="col-xl-8 order-xl-1">
-          <div class="card bg-secondary shadow">
-            <div class="card-header bg-white border-0">
-              <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="mb-0">Medicine</h3>
-                  <div class="alert alert-primary success d-none" role="alert">
-			        
-			     </div>
-                </div>
-                
-              </div>
-            </div>
-           <div class="card-body">
-              	<div class="table-responsive p-1">
-			       <table  class="table align-items-center table-white table-flush">
-			              <thead class="thead-light">
-			                <tr>
-			                  <th>No</th>
-			                  <th>Name</th>
-			                  <th>Type</th>
-			                  <th>Chemical Things</th>
-			                  <th>Action</th>
-			                </tr>
-			              </thead>
-			              <tbody id="medicineTable" >
-			                
-			                
-			              </tbody>
-			            </table>
 
+        <div class="card-body pt-0">
+          <!-- Add form start -->
+          <form id="AddMedicineForm">
+  			 
+  		      <div class="form-group">
+  		        <label for="cname" class="sfont">Medicine Name</label>
+  		        <span class="Ename error d-block" ></span>
+  		        <input type="text" name="name" id="cname" placeholder="enter medicine name" class="d-inline form-control ">
+  		      </div>
 
-			    </div> 
-          <!-- datatable js <div class="card-body">
-                <div class="table-responsive p-1">
-             <table  id="medicineTables"  class="table align-items-center table-white table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th>No</th> 
-                        <th>Name</th>
-                        
-                        <th>Chemical Things</th>
-                         <th>Action</th> 
-                      </tr>
-                    </thead>
-                    <tbody >
-                      
-                      
-                    </tbody>
-                  </table>
-
-                  
-          </div> data table js end -->
-            </div>
-          </div>
+  		      <div class="form-group">
+  		        <label for="medicineType" class="sfont">Choose Medicine Type</label>
+  	            <select class="form-control" name="type_id"  id="medicineType">
+                  <option value="">Choose Type</option>
+  	              <?php $__currentLoopData = $medTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $medType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+  	              <option value="<?php echo e($medType->id); ?>"><?php echo e($medType->name); ?></option>
+  	              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+  	            </select>
+  		      </div>
+  		      <div class="form-group">
+  		        <label for="chemical" class="sfont">Enter Chemicals</label>
+  		        <span class="Echemical error d-block"></span>
+  		        <textarea class="form-control" id="chemical" rows="3"></textarea>
+  		      </div>
+  		      <div class="form-group">
+  		        <button type="button" class="btn btn-primary btn-md  float-right addNew">Add</button>
+  		      </div>
+  			  </form>
+  	      <!-- Add form end -->
         </div>
       </div>
-      <!-- Footer -->
-      
+
+      <div class="card" id="EditMedicine">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <h3 class="mb-0">Edit Medicine</h3>
+        </div>
+
+        <div class="card-body pt-0">
+    			<!-- Update form start -->
+    			<form id="EditMedicineForm">
+  	        <div class="form-group">
+  		        <label for="ucname" class="sfont">Medicine Name</label>
+  		        <span class="UEname error d-block" ></span>
+  		        <input type="text" name="name" id="ucname" placeholder="enter medicine name" class="d-inline form-control "> 
+  		      </div>
+  		      <input type="hidden" name="" class="medid">
+  		      <div class="form-group">
+  		        <label for="umedicineType" class="sfont">Choose Medicine Type</label>
+              <select class="form-control" name="typeid"  id="umedicineType">
+                <?php $__currentLoopData = $medTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $medType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option class="medtype-<?php echo e($medType->id); ?>" value="<?php echo e($medType->id); ?>"><?php echo e($medType->name); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              </select>
+  		      </div>
+  		      <div class="form-group">
+  		        <label for="uchemical" class="sfont">Enter Chemicals</label>
+  		        <span class="UEchemical error d-block"></span>
+  		        <textarea class="form-control" name="chemical" id="uchemical" rows="3"></textarea> 
+  		      </div>
+  		      <div class="form-group">
+  		        <button type="button" class="btn btn-primary btn-md  float-right update">Update</button>
+  		      </div>
+  	      </form>
+          <!-- Update form end -->
+        </div>
+      </div>
     </div>
-    
+
+    <div class="col-xl-8 order-xl-1">
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <h3 class="mb-0">Medicines</h3>
+        </div>
+        <!-- Light table -->
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Chemical Things</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody class="list" id="medicineTable">
+              
+            </tbody>
+          </table>
+        </div>
+        <!-- Card footer -->
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <?php $__env->stopSection(); ?>
 
@@ -138,10 +142,8 @@
   $('document').ready(function(){
   	getData();
     //getDatas();
- 
 
   	$('#EditMedicine').hide();
-
 
     $.ajaxSetup({
         headers: {
@@ -209,10 +211,6 @@
     //     } );
     //   })
     // }
-
-
-
-
 
 
     $('.addNew').click(function(){
@@ -283,7 +281,7 @@
 
     $('.update').click(function(){
     	var id=$('.medid').val();
-    	var obj=$('#EditMedicine').serialize();
+    	var obj=$('#EditMedicineForm').serialize();
     	var url="<?php echo e(route('medicine.update',':id')); ?>";
     	url=url.replace(':id',id);
     	$.ajax({
@@ -328,30 +326,32 @@
 
     $('#medicineTable').on('click','.btnDelete',function(){
     	
-    	var id=$(this).data('id');
-    	console.log(id);
-    	 var url="<?php echo e(route('medicine.destroy',':id')); ?>";
-    	
-    	 url=url.replace(':id',id);
-    	 
-    	 $.ajax({
-          url:url,
-          type:"post",
-          data:{"_method": 'DELETE'},
-          dataType:'json',
-          success:function(res){
-          	if(res.success){
-    	  		$('.success').removeClass('d-none');
-    	  		$('.success').addClass('text-danger');
-	              $('.success').show();
-	              $('.success').text('successfully Deleted');
-	              $('.success').fadeOut(3000);
-	              getData();
+    	if(confirm('Are you sure to delete?')){
+          var id=$(this).data('id');
+            console.log(id);
+             var url="<?php echo e(route('medicine.destroy',':id')); ?>";
+            
+             url=url.replace(':id',id);
+             
+             $.ajax({
+                url:url,
+                type:"post",
+                data:{"_method": 'DELETE'},
+                dataType:'json',
+                success:function(res){
+                  if(res.success){
+                  $('.success').removeClass('d-none');
+                  $('.success').addClass('text-danger');
+                      $('.success').show();
+                      $('.success').text('successfully Deleted');
+                      $('.success').fadeOut(3000);
+                      getData();
 
-	          }},
-	          
+                  }},
+                  
 
-	      });
+              });
+      }
 
     	})
     

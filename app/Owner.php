@@ -15,4 +15,8 @@ class Owner extends Model
     public function receptions(){
     	return $this->hasMany('App\Reception');
     }
+
+    public function user(){
+    	return $this->belongsTo('App\User');
+    }
 }

@@ -40,6 +40,9 @@ Route::resource('owners','OwnerController');
 
 
 
+Route::get('/getOwners','OwnerController@getOwners')->name('getOwners');
+
+
 //Doctor
 Route::resource('doctor','DoctorController');
 

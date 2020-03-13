@@ -1,5 +1,4 @@
-@extends('frontendTemplate')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="row">
     <div class="col-12">
 
@@ -8,12 +7,13 @@
 
           <h3 class="mb-0">Doctor List</h3>
 
-          @if( Session::has("success") )
+          <?php if( Session::has("success") ): ?>
           <div class="alert alert-success alert-block" role="alert">
               <button class="close" data-dismiss="alert"></button>
-              {{ Session::get("success") }}
+              <?php echo e(Session::get("success")); ?>
+
           </div>
-          @endif
+          <?php endif; ?>
 
           <div class="alert alert-success success d-none" role="alert"></div>
         </div>
@@ -37,8 +37,8 @@
 
     </div>
 </div>
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
 <script type="text/javascript">
   $(document).ready(function(){
     $.ajaxSetup({
@@ -52,7 +52,7 @@
     
     getOnwers();
     function getOnwers(){
-        $.get("{{route('getOwners')}}",function(response){
+        $.get("<?php echo e(route('getOwners')); ?>",function(response){
             var j=1;
             var html='';
             $.each(response,function(i,v){
@@ -80,7 +80,7 @@
 
      $('#ownerTable').on('click','.btnEdit',function(){
           var id=$(this).data('id');
-          var url="{{route('owners.edit',':id')}}";
+          var url="<?php echo e(route('owners.edit',':id')); ?>";
       
           url=url.replace(':id',id);
           $(this).attr('href',url);
@@ -89,7 +89,7 @@
      $('#ownerTable').on('click','.btnDelete',function(){
           if(confirm("Are you sure to delete?")){
               var id=$(this).data('id');
-              var url="{{route('owners.destroy',':id')}}";
+              var url="<?php echo e(route('owners.destroy',':id')); ?>";
           
                url=url.replace(':id',id);
                
@@ -123,4 +123,5 @@
 
  
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontendTemplate', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/teach_prj/clinic/resources/views/owner/index.blade.php ENDPATH**/ ?>
