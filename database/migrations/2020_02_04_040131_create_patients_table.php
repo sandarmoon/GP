@@ -15,6 +15,7 @@ class CreatePatientsTable extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('reception_id');
             $table->string('name');
             $table->string('fatherName');
             $table->integer('age');
@@ -28,8 +29,14 @@ class CreatePatientsTable extends Migration
             $table->string('allergy');
             $table->string('job');
             $table->text('file');
+
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('reception_id')
+                ->references('id')->on('receptions')
+                ->onDelete('cascade');
+
         });
     }
 

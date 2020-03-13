@@ -1,40 +1,37 @@
 <?php $__env->startSection('content'); ?>
 	
-<div class="container">
-   
-     <div class="card-header border-0">
-      <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
-        Create new user
-      </button>
-      <h3 class="mb-0">User tables</h3>
-      <div class="alert alert-primary success d-none my-3" role="alert">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+            Add Reception
+          </button>
+          <h3 class="mb-0">Receptions</h3>
+          <div class="alert alert-primary success d-none my-3" role="alert"></div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive" >
+            <table class="table table-bordered align-items-center table-white table-flush example" id="dataTable" width="100%" cellspacing="0">
+                <thead class="thead-light">
+                  <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Adress</th>
+                    <th>phone</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="usertable">
+                </tbody>
+            </table>
+          </div>    
+        </div>             
       </div>
     </div>
-    <div class="table-responsive" >
-        <table class="table table-bordered align-items-center table-white table-flush example" id="dataTable" width="100%" cellspacing="0">
-              <thead class="thead-light">
-                <tr>
-                  <th>No</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Adress</th>
-                  <th>phone</th>
-                  
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="usertable">
-                
-                
-                
-              </tbody>
-            </table>
-    </div>
-                          
-</div>
-
-                  
-              
+  </div>
+           
 <?php $__env->stopSection(); ?>
 
 
