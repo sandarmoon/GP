@@ -337,7 +337,7 @@
   <!-- <script src="<?php echo e(asset('template/table/datatables/dataTables.bootstrap4.min.js')); ?>"></script> -->
 
   <!-- Page level custom scripts -->
-  <script src="<?php echo e(asset('template/table/js/demo/datatables-demo.js')); ?>"></script>
+  <!-- <script src="<?php echo e(asset('template/table/js/demo/datatables-demo.js')); ?>"></script> -->
   <script type="text/javascript" src=""></script>
   <script src="<?php echo e(asset('template/table/datatables/icon.js')); ?>"></script>
   <script src="<?php echo e(asset('dist/js/select2.min.js')); ?>"></script>

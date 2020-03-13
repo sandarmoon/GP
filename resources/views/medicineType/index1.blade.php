@@ -57,16 +57,15 @@
             </div>
            <div class="card-body">
               	<div class="table-responsive p-1">
-			       <table  class="table align-items-center table-white table-flush table-flush example"  id="dataTable">
+			       <table  class="table align-items-center table-white table-flush table-flush example"  id="medicineType">
 			              <thead class="thead-light">
 			                <tr>
 			                  <th>No</th>
 			                  <th>Name</th>
-			                  
 			                  <th>Action</th>
 			                </tr>
 			              </thead>
-			              <tbody id="medicineType" >
+			              <tbody>
 			                
 			                
 			              </tbody>
@@ -101,7 +100,56 @@
 
 
 
+		//start here
 
+		function getMedicineType(){
+	      var i=1;
+	          $('#medicineType').DataTable({
+	          
+	          "processing": true,
+	          destroy:true,
+	          "sort":false,
+	          pagingType: 'full_numbers',
+	           pageLength: 5,
+	           language: {
+	             oPaginate: {
+	               sNext: '<i class="fa fa-forward"></i>',
+	               sPrevious: '<i class="fa fa-backward"></i>',
+	               sFirst: '<i class="fa fa-step-backward"></i>',
+	               sLast: '<i class="fa fa-step-forward"></i>'
+	               }
+	             } ,
+	             "serverSide": true,
+	             "stateSave": true,  //restore table state on page reload,
+	           "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
+	          "ajax": "{{ route('medicineType.getType') }}",
+	          "columns":[
+
+	               {render:function(){
+	                
+	                return i++;
+	               }},
+	              { "data": "name",
+	              render:function(data){
+	              	$('.btnEdit').attr('data-name', data);
+	              	return data;
+	              } },
+	              { "data": "id",
+	                sortable:false,
+	                render:function(data){
+	                  return `<button class="btn btn-primary btn-sm d-inline-block btnEdit "  data-id="${data}"><i class="ni ni-settings"></i></button>
+	                            <button class="btn btn-danger btn-sm d-inline-block btnDelete " data-id="${data}"> <i class="ni ni-fat-delete"></i></button>`;
+	                }
+	               }
+	          ],
+	          "info":false
+	          
+	       });
+    }
+
+
+
+		//end here
 
 
 
@@ -117,25 +165,25 @@
 
 
 		//go to medicineType.index
-		function getMedicineType(){
-			$.get('/getMedicineType',function(response){
-				// console.log(response);
-				var data=response;var html=''; var j=1;
-				$.each(data,function(i,v){
-					html+=`<tr>
-		                    <td>${j++}</td>
-		                    <td>${v.name}</td>
+		// function getMedicineType(){
+		// 	$.get('/getMedicineType',function(response){
+		// 		// console.log(response);
+		// 		var data=response;var html=''; var j=1;
+		// 		$.each(data,function(i,v){
+		// 			html+=`<tr>
+		//                     <td>${j++}</td>
+		//                     <td>${v.name}</td>
 		                    
-		                    <td>
-		                    	<button class="btn btn-primary btn-sm d-inline-block btnEdit " data-name="${v.name}" data-id="${v.id}"><i class="ni ni-settings"></i></button>
-				                  <button class="btn btn-danger btn-sm d-inline-block btnDelete " data-id="${v.id}"> <i class="ni ni-fat-delete"></i></button>
-		                    </td>
+		//                     <td>
+		//                     	<button class="btn btn-primary btn-sm d-inline-block btnEdit " data-name="${v.name}" data-id="${v.id}"><i class="ni ni-settings"></i></button>
+		// 		                  <button class="btn btn-danger btn-sm d-inline-block btnDelete " data-id="${v.id}"> <i class="ni ni-fat-delete"></i></button>
+		//                     </td>
 
-		                	</tr>`
-				})
-				$('#medicineType').html(html);
-			})
-		}
+		//                 	</tr>`
+		// 		})
+		// 		$('#medicineType').html(html);
+		// 	})
+		// }
 
 
 
@@ -181,6 +229,7 @@
   		})
 	//edit the data
 		$('#medicineType').on('click','.btnEdit',function(){
+			// alert('heow');
 	    	$('#EditMedicineType').show();
 	    	$('#AddMedicineType').hide();
 	    	var id=$(this).data('id');

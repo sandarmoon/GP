@@ -92,13 +92,13 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-age">Age</label>
-                        <input type="text" id="input-age" name="age" class="form-control form-control-alternative" value="{{$owner->age}}" placeholder="23">
+                        <input type="text" id="input-age" name="age" class="form-control form-control-alternative" value="{{$owner->age}}" >
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-dob">Date of Birth</label>
-                        <input type="date" id="input-dob" name="dob" value="{{$owner->dob}}" class="form-control form-control-alternative" placeholder="">
+                        <input type="date" id="input-dob" name="dob" value="{{$owner->dob}}" class="form-control form-control-alternative" >
                       </div>
                     </div>
                   </div>

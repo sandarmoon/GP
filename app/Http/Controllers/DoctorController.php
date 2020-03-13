@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Doctor;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Resources\DoctorResource;
 use DB;
 use Auth;
@@ -25,8 +26,9 @@ class DoctorController extends Controller
     }
 
     public function getDoctor(){
-        $doctors=Doctor::all();
-        return  DoctorResource::collection($doctors);
+
+        $all=  DoctorResource::collection(Doctor::all());
+        return Datatables::of($all)->make(true);
     }
 
     /**
@@ -257,7 +259,7 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        $doctor = Doctor::with('user')->find($id);
+        $doctor = Doctor::find($id);
         //dd($doctor->user->id);
         $doctor->delete();
 
